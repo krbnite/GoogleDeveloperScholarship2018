@@ -27,3 +27,58 @@ There is a lot that goes on between your phone and server an app is hosted on!
 <img src="./images/between-your-phone-and-server-3.png" width="500vw">
 <img src="./images/between-your-phone-and-server-4.png" width="500vw">
 <img src="./images/between-your-phone-and-server-5.png" width="500vw">
+
+The above is only half the journey!  The response has to travel from server all the way back
+to the phone.
+
+## Online-First VS Offline-First Web Apps
+In an online first approach, one can make an offline mode, e.g., a sad cat pic.  But in this approach,
+to determine if the app should display the sad cat pic, it must first assess if there is online
+connectivity. This will work fine when there is or is not connectivity, but the app will hang during
+times of Lie-Fi. (Example: the app attempts to fetch the page from the network, and if that fails,
+the app shows some cached content.)
+
+In an offline first approach, the app is designed with worst case scenarios in mind.  It will work
+well offline, in the same way it will work well during Lie-Fi.  The app fires up w/ the assumption
+that it's offline, then fills in where it can by connecting to the web. For example, the app 
+first delivers the page's header and content from a cache on the device, then attempts to fetch
+updated content from the network.
+
+## Install Node
+```
+brew install node
+```
+<img src="./images/brew-install-node.png" width="500vw">
+
+## Clone the Wittr Code
+```
+git clone https://github.com/jakearchibald/wittr
+cd wittr
+npm install
+```
+
+I got a ton of warnings and scary looking shame-on-you's!  Luckily, the course instructor
+said to expect a bunch of this, and to (mostly) not worry about it.
+<img src="./images/npm-install-uhoh.png" width="500vw">
+
+## Run the Wittr App
+```
+# inside Wittr directory
+npm run serve
+```
+<img src="./images/npm-run-serve.png" width="500vw">
+
+As you can see, the config server is listening on port 8889, while another
+server is running at port 8888 (the Jupyter port!).  You can change these ports if/when
+necessary.
+
+So, what is the difference in these two servers?  Just plug in 'localhost:888x' into the browser, and
+you see that the config server allows you to test for different scenarios (e.g., perfect connectivity,
+lie-fi, etc), while the server on 8888 actually serves the app.
+
+Config server (8889)
+<img src="./images/the-config-server.png" width="500vw">
+
+App server (8888)
+<img src="./images/the-app-server.png" width="500vw">
+
