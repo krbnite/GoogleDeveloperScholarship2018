@@ -22,8 +22,8 @@ to load...when, in truth, it will never load!
 
 There is a lot that goes on between your phone and server an app is hosted on!
 
-![](./images/between-your-phone-and-server-1.png)
-![](./images/between-your-phone-and-server-2.png)
-![](./images/between-your-phone-and-server-3.png)
-![](./images/between-your-phone-and-server-4.png)
-![](./images/between-your-phone-and-server-5.png)
+<img src="./images/between-your-phone-and-server-1.png" width="500vw">
+<img src="./images/between-your-phone-and-server-2.png" width="500vw">
+<img src="./images/between-your-phone-and-server-3.png" width="500vw">
+<img src="./images/between-your-phone-and-server-4.png" width="500vw">
+<img src="./images/between-your-phone-and-server-5.png" width="500vw">
