@@ -59,6 +59,7 @@ npm install
 
 I got a ton of warnings and scary looking shame-on-you's!  Luckily, the course instructor
 said to expect a bunch of this, and to (mostly) not worry about it.
+
 <img src="./images/npm-install-uhoh.png" width="500vw">
 
 ## Run the Wittr App
@@ -66,6 +67,7 @@ said to expect a bunch of this, and to (mostly) not worry about it.
 # inside Wittr directory
 npm run serve
 ```
+
 <img src="./images/npm-run-serve.png" width="500vw">
 
 As you can see, the config server is listening on port 8889, while another
@@ -76,9 +78,23 @@ So, what is the difference in these two servers?  Just plug in 'localhost:888x' 
 you see that the config server allows you to test for different scenarios (e.g., perfect connectivity,
 lie-fi, etc), while the server on 8888 actually serves the app.
 
-Config server (8889)
+(Btw, ctrl+c to exit.)
+
+### Config server (8889)
 <img src="./images/the-config-server.png" width="500vw">
 
-App server (8888)
+### App server (8888)
 <img src="./images/the-app-server.png" width="500vw">
+
+This app starts as a horrible online-first app.  Throughout the course we will work to weed out
+the bad parts and, ultimately, create an offline-first, progressive web app.
+
+### Original Wittr Offline Experience
+<img src="./images/original-wittr-offline-experience.png" width="500vw">
+
+
+## Some code
+This course will use JavaScript ES5, though you can use ES6 if you want.
+
+Websocket!
 
