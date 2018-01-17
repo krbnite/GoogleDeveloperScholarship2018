@@ -109,5 +109,8 @@ connectivity issues. It enables a progressive, offline-first approach.
 * Google: [Caching Files with Service Worker](https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker)
 * [http://offlinefirst.org/](http://offlinefirst.org/)
 * [https://www.promisejs.org/](https://www.promisejs.org/)
+* Udacity: [Object-Oriented JavaScript](https://www.udacity.com/course/object-oriented-javascript--ud711)
+* Udacity: [Asynchronous JavaScript Requets](https://www.udacity.com/course/asynchronous-javascript-requests--ud109)
+* Udacity: [Web Tooling & Automation](https://www.udacity.com/course/web-tooling-automation--ud892)
 
 
