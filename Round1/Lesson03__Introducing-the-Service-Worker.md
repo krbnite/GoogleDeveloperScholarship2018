@@ -63,3 +63,12 @@ brought me to a Browser Statistics page on W3schools.  Here are the 2017 stats:
 
 <img src="./images/browser-stats-2017.png" widht="500vw">
 
+Without Safari or IE, we are still talking about 90% of the market share here...so, like I said, 
+good enough! 
+
+Better, I checked out the website from the video ([Is Service Worker Ready?](https://jakearchibald.github.io/isserviceworkerready/)),
+and IE and Safari both jumped on board.
+
+<img src="./images/service-workers-everywhere.png" width="500vw">
+
+
