@@ -98,3 +98,15 @@ This course will use JavaScript ES5, though you can use ES6 if you want.
 
 Websocket!
 
+## Introducing Service Worker!
+Service Worker is a relatively new browser feature that lets web developers overcome network
+connectivity issues. It enables a progressive, offline-first approach.
+
+## Some References Recommended in the Forums
+* Udacity: [Javascript Promises](https://www.udacity.com/course/javascript-promises--ud898)
+* Eloquent JavaScript: [Ch17: HTTP](http://eloquentjavascript.net/17_http.html)
+* Mozilla: [Using Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+* Google: [Caching Files with Service Worker](https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker)
+* [http://offlinefirst.org/](http://offlinefirst.org/)
+
+
