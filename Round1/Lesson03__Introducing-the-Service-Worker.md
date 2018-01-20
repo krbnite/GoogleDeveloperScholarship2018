@@ -71,4 +71,66 @@ and IE and Safari both jumped on board.
 
 <img src="./images/service-workers-everywhere.png" width="500vw">
 
+-----------------------------------------
+
+## Making My First Service Worker
+In the `wittr` directory, I first turn on tmux 
+
+```bash
+tmux
+# Split screen horizontally: <ctrl>+a, -
+# Resize bottom screen to be fairly small: <ctrl>+a, <shift>+J, <shift>+J...
+# Then begin server
+npm run serve  
+# Now go to top screen: <ctrl>+a, k
+# Open editor
+vim
+```
+
+<img src="./images/tmux-vim-setup.png" width="500">
+
+Now, in the Nerd Tree file browser go to public > js > sw > index.js:
+```js
+console.log('js')
+```
+
+To see this in the browser:
+```
+localhost:8888/sw.js
+```
+
+Something we might actuall put in index.js is a fetch event listener:
+```js
+self.addEventListener('fetch', function(event) {
+  console.log(event.request)
+});
+```
+-----------------------------------------------------------
+
+## Quiz
+Above, we added a fetch listener to a service worker script, but now we need to register
+it from the page.
+
+To get the wittr code in the same state as Jake's, we must reset git and change branches.
+
+Reset the changes I made:
+```git
+git reset --hard
+```
+
+Change git branch I'm working on:
+```git
+git checkout task-register-sw
+```
+
+Now...if you're already hooked into the server, how does the server know which git 
+branch to take code from...?  
+
+### Private Methods (by Convention Only)
+Just like in Python, Javascript does not have truly private methods.  Instead, similar to Python,
+the convention is to begin a method name with an underscore if one wants to let other programmers
+know that this method should be treated as if it were private.
+
+
+
 
