@@ -124,7 +124,9 @@ git checkout task-register-sw
 ```
 
 Now...if you're already hooked into the server, how does the server know which git 
-branch to take code from...?  
+branch to take code from...?  (Not fully sure...)
+
+To register the service worker, we go to public > js > main > IndexController.js.
 
 ### Private Methods (by Convention Only)
 Just like in Python, Javascript does not have truly private methods.  Instead, similar to Python,
