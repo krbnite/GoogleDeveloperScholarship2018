@@ -38,18 +38,53 @@ str.bold();
   <b>cat in the hat</b>
 str.fontcolor('#ff0000');
   <font color="ff0000">cat in the hat</font>
-// strings have indices (like a list or array)
+```
+
+Strings have indices indices (like a list or array) and are similar to
+python strings.
+```js
 str[0]
   'c'
 str[1]
   'a'
+str1 = 'He said, "No way."'
+str2 = "This isn't a string."
+```
+
+Other string things:
+```js
 // there exist string operators
 str + ' on a wrestling mat'
-  'cat in the hat on a wrestling mat
+  'cat in the hat on a wrestling mat'
 // implicit type conversion
 'hello' + 5*10;
   'hello50'
+// Escaping!
+console.log("This quote has a \"quote\" in it.")
+// Comparison
+'green' > 'Green'
+  true
+'blue' > 'green'
+  false
 ```
+
+## Null vs Undefined
+Null is a data type that has the value of nothing, where as undefined is a
+data type that has no value.
+```js
+var a; // a is undefined
+var b = null; // b is null
+```
+
+A related type is NaN -- Not a Number.  This is often return when indicating
+an error in a math calculation, e.g.:
+```js
+'kitty cat' / 2
+  NaN
+Math.sqrt(-1)
+  NaN
+```
+
 
 ## Variables & JS Naming Convention
 In SQL, you often see vars_like_this, but in JavaScript you will more often
@@ -71,6 +106,40 @@ sums it up nicely:
 > (though note that in some cases the "current scope" will coincide with the 
 > "global scope", in which case there is no difference between using var and not 
 > using var).
+
+
+## Implicit Type Conversion
+JavaScript is a loosely-typed language: there is no need to specify data types.  Instead,
+the JavaScript engine will do the interpreting and coerce things into making sense.
+
+```js
+// string + number --> string
+'hello' + 50;
+  'hello50'
+// comparison
+"1" == 1
+  true
+0 == false
+  true
+```
+
+### Loose Type vs Strong Type
+
+| Implicit (e.g., JS) | Explicity (e.g., C) |
+----------------------|---------------------|
+| var cnt = 1;        | int cnt = 1         |
+| var name = 'Kevin'  | string name = 'Kevin'|
+| var num = 1.23      | double num = 1.23   |
+
+### Strict Equality in JavaScript
+In order to get around the potential pitfalls of loosely-typed equality expressions,
+one can use the "strict equality" operator:
+```js
+'1' === 1
+  false
+'1' !== 1
+  true
+```
 
 
 -------------------------------------------------------------
