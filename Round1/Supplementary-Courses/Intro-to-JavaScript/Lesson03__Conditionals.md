@@ -349,3 +349,76 @@ switch(expression, case1, case2, case3)
 ```
 
 In Python, you just have to use if-elif-elif-else chains, or get clever with a dictionary.  
+
+----------------------------
+
+## The Strong Equality of Switch
+If you're like me, you must be wondering, "Switch is cool and all, but does it evaluate
+logical expression strongly --- or like a wimp?"  
+
+We recently learned that `2=='2'` is true, while `2==='2'` is false, and that in most cases 
+we likely just want to use the strong equality operator.  Then we get shown the switch statement,
+and switch's strength not 100% clear from the course.
+
+So I tested it!
+
+```js
+switch(2) {
+  case 1: console.log('case 1');
+  case '2': console.log('Do\'h!');
+  case 2: console.log('Alright!');
+}     
+```
+
+If switch was weak, we would see both "Do'h!" and "Alright!" printed to screen since I do
+not use break statements. But we only see "Alright!" so switch is strong!
+
+----------------------------------------------------------
+
+## Falling Through
+Often when using switch, you want to use the break statement for each case.  It might seem
+extraneous, but from a more positive perspective switch gives you two tools in one:
+1. The "case" statement that chooses only one case:  switch-case-break
+2. The "switch" statement that chooses all cases from the "on switch" forward: switch-case-continue
+
+The "switch on" utility of the switch statement is called "falling through" in the lecture. It is
+useful when you have a program flow that should run from a met-condition on, e.g.:
+```js
+benefits = function(tier) {
+  var output='';
+  switch (tier) {
+    case 1: output += '\t* exclusive access to live interviews and AMAs\n';
+    case 2: output += '\t* access to exclusive content and limited-time offers\n';
+    case 3: output += '\t* a monthly subscription\n'
+  }
+  console.log('Benefits include:\n'+output);
+}
+```
+
+--------------------------------------------
+```js
+/*
+ * Programming Quiz: Back to School (3-9)
+ */
+
+// change the value of `education` to test your code
+var education = "an Associate's degree";
+
+// set the value of this based on a person's education
+var salary;
+
+// your code goes here
+
+switch(education) {
+    case 'no high school diploma': salary = '$25,636'; break;
+    case 'a high school diploma': salary = '$35,256'; break;
+    case "an Associate's degree": salary = '$41,496'; break;
+    case "a Bachelor's degree": salary = "$59,124"; break;
+    case "a Master's degree": salary = "$69,732"; break;
+    case "a Professional degree": salary = "$89,960"; break;
+    case "a Doctoral degree": salary = "$84,396"; break;
+    default: salary = '$25,636'; break;
+}
+
+console.log('In 2015, a person with ' + education + ' earned an average of ' + salary + '/year.')
+```
