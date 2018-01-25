@@ -25,8 +25,13 @@ method:
 myFcn = lambda x: x*x
 ```
 
+Later on in the lesson, I learned that this technique is called 
+a "function expression."  It assigns an anonymous function to a variable.
+
 ## Function Definition: Method 2
-This is the way they showed in the course.
+This is the way they showed how to define a function in the course.  This technique
+is called "function declaration."  All function declarations in a script a hoisted
+to the top (see section on hoisting below); this is not true of function expressions.
 
 JavaScript:
 ```js
@@ -134,16 +139,18 @@ a new var, z, in the function body...
 Any variable defined in the main environment has global scope, and can be accessed from
 any functions inside that environment, functions inside those functions, and so on.
 
-<img src="./images/global-scope.png" width="500">
+<img src="./images/global-scope.png" width="300">
 
 A variable defined in a function environment is not seen in the main environment, but is
 seen in any function within the current function environemnt.
 
-<img src="./images/function-scope.png" width="500">
+<img src="./images/function-scope.png" width="300">
 
 All of this can be summarized in various ways: 
 * a variable's scope propagates to child environments, but not parent environments
 * a variable's scope extends from its environment to all descendants, and excludes any ancestors
+
+<img src="./images/scopes.png" width="400">
 
 ## Shadowing / Scope Overriding
 The reason it is important to use "var" reflexively is to ensure you are not screwing over
@@ -188,3 +195,93 @@ bookReview('great')
 console.log(book)
   Do Androids Dream of Electric Sheep?
 ```
+
+It is advised to limit the use of global variables as much as possible. Large programs are
+much easier to maintain and understand when variables have limited scope.
+
+
+## Hoisting, or: Why Bad Code is Bad
+This is almost something that needn't be said, but it needs to be said!  JavaScript
+hoists all functions to the top of its program flow, so things like this are 
+technically legal:
+```js
+add(3,5);
+function add2(x,y) { return x+y; }
+```
+
+That's because JavaScript reorganizes things behind the scenes and interprets your
+code like this:
+```js
+function add2(x,y) { return x+y; }
+add(3,5);
+```
+
+There is also a type of variable hoisting too... 
+```js
+function sayHi(name) {
+  console.log(greeting + " " + name);
+  var greeting = 'Hi';
+}
+sayHi('Kevin')
+  undefined Kevin
+```
+
+JavaScript puts all variable declarations at the top of the environment, so your
+code might look like that above, which is obviously wrong and should throw an error...but
+JavaScript will see it as:
+```js
+function sayHi(name) {
+  var greeting;
+  console.log(greeting + " " + name);
+  greeting = 'Hi';
+}
+sayHi('Kevin')
+  undefined Kevin
+```
+
+
+Point is, write good code:
+* write all functions at top
+* write all variable definitions at top of their environment
+
+-----------------------------------
+
+## Build a Triangle
+```js
+/*
+ * Programming Quiz: Build A Triangle (5-3)
+ */
+
+// creates a line of * for a given length
+function makeLine(length) {
+    var line = "";
+    for (var j = 1; j <= length; j++) {
+        line += "* ";
+    }
+    return line + "\n";
+}
+
+// your code goes here.  Make sure you call makeLine() in your own code.
+function buildTriangle(num) {
+    var output = "";
+    for (var i=1; i<=num; i++) {
+        output += makeLine(i);
+    }
+    return output
+}
+
+// test your code by uncommenting the following line
+console.log(buildTriangle(10));
+```
+
+----------------------------------
+
+## Function Expressions
+Ok, so I've been using these throughout the notes... Though functions made from function expressions behave like
+functions made from function declarations, there are some important difference behind the scenes. Namely,
+function expressions do not get hoisted.
+
+<img src="./images/declaration-vs-expression.png">
+
+<img src="./images/function-expressions-and-hoisting.png">
+
