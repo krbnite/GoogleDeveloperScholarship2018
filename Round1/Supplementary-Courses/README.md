@@ -7,13 +7,13 @@ So, I'm gonna try to mad dash through some of Udacity's other courses on JS.
   - https://www.udacity.com/course/javascript-and-the-dom--ud117
 * Asynchronous JavaScript Requests (Intermediate)
   - https://www.udacity.com/course/asynchronous-javascript-requests--ud109
-* Offline Web Applications
+* Offline Web Applications (Intermediate)
   - https://www.udacity.com/course/offline-web-applications--ud899
-* Intro to Progressive Web Apps
+* Intro to Progressive Web Apps (Intermediate)
   - https://www.udacity.com/course/intro-to-progressive-web-apps--ud811
 * Intro to jQuery (Intermediate)
   - https://www.udacity.com/course/intro-to-jquery--ud245
-* Intro to AJAX
+* Intro to AJAX (Intermediate)
   - https://www.udacity.com/course/intro-to-ajax--ud110
 * Object-Oriented JavaScript (Intermediate)
   - https://www.udacity.com/course/object-oriented-javascript--ud015
@@ -21,7 +21,7 @@ So, I'm gonna try to mad dash through some of Udacity's other courses on JS.
   - https://www.udacity.com/course/javascript-design-patterns--ud989
 * JavaScript Promises (Advanced)
   - https://www.udacity.com/course/javascript-promises--ud898
-* ES6: JavaScript Improved
+* ES6: JavaScript Improved (Advanced)
   - https://www.udacity.com/course/es6-javascript-improved--ud356
 
 
