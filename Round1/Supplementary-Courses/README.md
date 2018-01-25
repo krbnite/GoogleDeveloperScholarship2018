@@ -23,5 +23,7 @@ So, I'm gonna try to mad dash through some of Udacity's other courses on JS.
   - https://www.udacity.com/course/javascript-design-patterns--ud989
 * JavaScript Promises (Advanced)
   - https://www.udacity.com/course/javascript-promises--ud898
+* ES6: JavaScript Improved
+  - https://www.udacity.com/course/es6-javascript-improved--ud356
 
 
