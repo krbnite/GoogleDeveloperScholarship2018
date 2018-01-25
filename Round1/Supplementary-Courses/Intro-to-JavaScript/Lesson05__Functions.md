@@ -285,3 +285,76 @@ function expressions do not get hoisted.
 
 <img src="./images/function-expressions-and-hoisting.png">
 
+When using function expressions, you want to use the var keyword to avoid scope shadowing.
+
+
+
+## Callbacks: Functions as Parameters
+In the calculus of variations, we study functionals. A functional is a function of a function. For example,
+F{f}(x) = integral(f; 0,x) takes in a function, f, and spits out a new function, F{f}(x).  So, if we feed
+f(t) = t, we get F{t}(x) = integral(t; 0,x) = x^2.  
+
+Anyway, F{f} is called a functional.  In JS speak, the function f is the parameter of that functional, and the
+specific function, f(t) = t, we used in the example is an argument.  If a function parameter is a function,
+we call that parameter a callback.  In mathspeak, a callback is the variable input function to a functional.
+
+
+## Inline Functional Expressions
+There is an option to given an "internal name" to a function that is assigned to a variable. Doing so
+does not seem to affect the function at all; the two functions below seem to be equivalent.
+```js
+#1: Anonymous Function Expression
+var myFcn1 = function(x) { 
+  // x,y,z
+}
+#2: Named Function Expression
+var myFcn2 = function fcnName(x) {
+  // x,y,z
+}
+```
+
+Using a named function expression can seem pretty silly at first,
+especially because the "internal" function name (in this case, "fcnName") is not usable afterwards;
+only the variable name of the function.  However, when you start getting more advanced, you might
+want to pass function expressions to a functional as an argument (inline).  In this case,
+using a named function expression can help with code readability:
+```js
+#1: Anonymous inline function expression
+someFunctional(function(x) {
+  // do stuff
+  }, arg2, arg3
+);
+#2: Named inline function expression
+someFunctional(function getMovieReview(x) {
+  // do stuff
+  }, arg2, arg3
+);
+```
+
+If the function body above is fairly complex above, then it is helpful to provide the
+function expression with a descriptive name that indicates clearly what the function does.
+
+-------------------------------------------------
+## Quiz
+```js
+/*
+ * Programming Quiz: Inline Functions (5-6)
+ */
+
+// don't change this code
+function emotions(myString, myFunc) {
+    console.log("I am " + myString + ", " + myFunc(2));
+}
+
+// your code goes here
+// call the emotions function here and pass in an
+// inline function expression
+emotions("happy", function(num) {
+    var output = '';
+    for (i=1; i<=num; i++) {
+        output += 'ha'
+    }
+    return output+'!';
+})
+```
+
