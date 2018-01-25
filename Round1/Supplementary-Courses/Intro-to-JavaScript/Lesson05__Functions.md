@@ -134,11 +134,57 @@ a new var, z, in the function body...
 Any variable defined in the main environment has global scope, and can be accessed from
 any functions inside that environment, functions inside those functions, and so on.
 
+<img src="./images/global-scope.png" width="500">
+
 A variable defined in a function environment is not seen in the main environment, but is
 seen in any function within the current function environemnt.
+
+<img src="./images/function-scope.png" width="500">
 
 All of this can be summarized in various ways: 
 * a variable's scope propagates to child environments, but not parent environments
 * a variable's scope extends from its environment to all descendants, and excludes any ancestors
 
+## Shadowing / Scope Overriding
+The reason it is important to use "var" reflexively is to ensure you are not screwing over
+variables in your parent environments.
 
+In the following code, we have a variable book in the parent environment, and again in
+the function environment.  However, we do not use the "var" keyword in the function 
+environment, so JS thinks, "Create a new variable unless this one already exists in the current
+scope." Fact is, "book" already exists in the current scope because it was defined in the main
+environments, and its variables have scope in all environmental descendants, unless overriden.
+
+```js
+var book = 'Do Androids Dream of Electric Sheep?'
+console.log(book)
+  Do Androids Dream of Electric Sheep?
+bookReview = function(adjective) {
+  book = 'Galactic Pot Healer'
+  console.log(book + ' was a ' + adjective + ' book!')
+}
+bookReview('great')
+  Galactic Pot Healer was a great book!
+console.log(book)
+  Galactic Pot Healer
+```
+
+<img src="./images/shadowing.png" width="500">
+
+To ensure a variable in a parent environment will not be affected, it is
+good practice to always use the "var" keyword when creating a variable -- that is,
+unless you explicitly want to affect something in the parent environment.
+
+```js
+var book = 'Do Androids Dream of Electric Sheep?'
+console.log(book)
+  Do Androids Dream of Electric Sheep?
+bookReview = function(adjective) {
+  var book = 'Galactic Pot Healer'
+  console.log(book + ' was a ' + adjective + ' book!')
+}
+bookReview('great')
+  Galactic Pot Healer was a great book!
+console.log(book)
+  Do Androids Dream of Electric Sheep?
+```
