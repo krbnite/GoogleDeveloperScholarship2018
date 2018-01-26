@@ -352,5 +352,26 @@ for (var i=0; i < numbers.length; i++) {
     }
 }
 ```
+--------------------------------------------------------
+
+## Piping Expression
+I don't know if that is what this is called, but that's the gist.  I saw there was
+an alternative way to write an anonymous function expression when googling stuff:
+```js
+var arr = [1,2,3,4,5];
+arr.forEach(x => {console.log(x*x)})
+  1
+  4
+  9
+  16
+  25
+```
+
+That is, we write "x => {}" instead of "function(x) {}".  Pretty cool!
+
+## Commandline JS w/ Node
+Another thing I found is that, if you've installed Node JS, there is a JS interpreter at the
+commandline: just type in node.
+
 
 
