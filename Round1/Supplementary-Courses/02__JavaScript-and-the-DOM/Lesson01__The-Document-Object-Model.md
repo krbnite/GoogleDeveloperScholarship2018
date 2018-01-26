@@ -27,4 +27,5 @@ nodes, and the properties/attributes of each node, e.g., and <img> node has a sr
 
 So, to recap:
 
-<img src="./images/characters-tokens-nodes-DOM.png" width="400">
+<img src="./images/characters-tokens-nodes-DOM.png" width="200">
+
