@@ -122,7 +122,7 @@ Non-deprecated Attributes:
 <figure>
   <img src="./images/figure-tag-example.png" alt="Example of the <figure> tag">
   <figcaption>
-    This example of the figure tag is actually using a \<figure\> tag!
+    This example of the figure tag is actually using a figure tag!
   </figcaption>
 </figure>
 
