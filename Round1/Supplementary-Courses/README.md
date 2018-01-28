@@ -5,6 +5,8 @@ So, I'm gonna try to mad dash through some of Udacity's other courses on JS.
   - https://www.udacity.com/course/intro-to-javascript--ud803
 * JavaScript and the DOM (Intermediate)
   - https://www.udacity.com/course/javascript-and-the-dom--ud117
+* Website Performance Optimization
+  - https://www.udacity.com/course/website-performance-optimization--ud884
 * Asynchronous JavaScript Requests (Intermediate)
   - https://www.udacity.com/course/asynchronous-javascript-requests--ud109
 * Offline Web Applications (Intermediate)
