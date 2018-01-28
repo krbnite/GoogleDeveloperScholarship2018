@@ -51,5 +51,80 @@ So many attributes:
 * type
 * value
 
+-------------------------------------------------
+
+## Unordered Lists
+```html
+<ul>
+  <li> HTML </li>
+  <li> CSS </li>
+  <li> JavaScript </li>
+</ul>
+```
+
+## Tree to HTML
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tree to HTML</title>
+  <!-- the next line loads the tests for the Udacity Feedback extension -->
+  <meta name="udacity-grader" content="http://udacity.github.io/fend/fend-refresh/lesson2/problem-set/tree-to-html/tests.json">
+</head>
+<body>
+  <!-- Did you notice that the body tag - the top of the sample tree - is already here? You don't need to add another one. -->
+  <!-- Your code goes here! -->
+  <h1>Yo, meng!</h1>
+  <div>
+    <p>Ever hear about the duck that moo'd like a cow?</p>
+    <p>He made for an interesting hamburger!</p>
+  </div>
+</body>
+</html>
+```
+
+## Anchor Tags
+Think you know everything about anchor tags?  I didn't.  Check out the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a).
+
+Attributes:
+* download
+* href
+* hreflang
+* ping
+* referrerpolicy
+* rel
+* target
+* type
+
+
+## Img Tags
+Think you know everything about img tags?  I didn't (again).  Check out the [MDN documentation](hhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
+
+Non-deprecated Attributes:
+* alt
+* crossorigin
+* decoding
+* height
+* hspace
+* ismap
+* longdesc
+* name
+* referrerpolicy
+* sizes
+* src
+* srcset
+* width
+* usemap
+* vspace
+
+## The Figure Tag
+<figure>
+  <img src="./images/figure-tag-example.png" alt="Example of the <figure> tag">
+  <figcaption>
+    This example of the figure tag is actually using a \<figure> tag!
+  </figcaption>
+</figure>
+
 
 
