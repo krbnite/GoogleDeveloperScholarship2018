@@ -366,3 +366,7 @@ Before your webpage can use the stylesheet, you need to link to it. To do this, 
 ```
 <link href="path-to-stylesheet/stylesheet.css" rel="stylesheet">
 ```
+
+---------------------------------------
+
+Didn't do last 2 quizzes.
