@@ -123,19 +123,56 @@ div p, #id:first-line {
 }
 ```
 
+### So many types of selectors!
 Straigth from MDN's mouth:
 > Selectors can be divided into the following categories:
 >
-> * Simple selectors: Match one or more elements based on element type, class, or id.
-> * Attribute selectors: Match one or more elements based on their attributes/attribute values.
-> * Pseudo-classes: Match one or more elements that exist in a certain state, such as an element that is being hovered over by the mouse
+> * **Simple selectors**: Match one or more elements based on element type, class, or id.
+> * **Attribute selectors**: Match one or more elements based on their attributes/attribute values.
+> * **Pseudo-classes**: Match one or more elements that exist in a certain state, such as an element that is being hovered over by the mouse
 >   pointer, or a checkbox that is currently disabled or checked, or an element that is the first child of its parent in the DOM tree.
-> * Pseudo-elements: Match one or more parts of content that are in a certain position in relation to an element, for example the first 
+> * **Pseudo-elements**: Match one or more parts of content that are in a certain position in relation to an element, for example the first 
 >   word of each paragraph, or generated content appearing just before an element.
-> * Combinators: These are not exactly selectors themselves, but ways of combining two or more selectors in useful ways for very specific 
+> * **Combinators**: These are not exactly selectors themselves, but ways of combining two or more selectors in useful ways for very specific 
 >   selections. So for example, you could select only paragraphs that are direct descendants of divs, or paragraphs that come directly 
 >   after headings.
-> * Multiple selectors: Again, these are not separate selectors; the idea is that you can put multiple selectors on the same CSS rule, 
+> * **Multiple selectors**: Again, these are not separate selectors; the idea is that you can put multiple selectors on the same CSS rule, 
 >   separated by commas, to apply a single set of declarations to all the elements selected by those selectors.
 
+This stuff is pretty cool!  I really didn't know how many types of selectors there are.
 
+## Attribute Selectors 
+Basically, I'm tempted copy-and-paste this entire page, but just look at it: [https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors)
+
+I wonder if these are ways I could select elements with Selenium; webscraping could be so much easier and more
+robust against minor updates in a website's code (e.g., adding a value to a class has crashed my scripts in the past).
+
+### Simple Attribute Selectors
+* [attr]: will select any element with attribute attr, whatever its value
+* [attr=val]: will select any element with attribute attr, but only if its value is val
+* [attr~=val]: will select any element with attribute attr, but only if the value val is one of a space-separated list contained in attr's value
+
+### Regex-Like Attribute Selectors
+* [attr|=val]: select all elements with the attribute attr for which the value is exactly val or starts with val- (careful, the dash here isn't a mistake, this is to handle language codes)
+* [attr^=val]: select all elements with the attribute attr for which the value starts with val
+* [attr$=val]: select all elements with the attribute attr for which the value starts with val
+* [attr\*=val]: select all elements with the attribute attr for which the value contains the string val (unlike [attr~=val], this selector doesn't treat spaces as value separators but as part of the attribute value)
+
+## Pseudo-Class and Pseudo-Element Selectors
+> A **CSS pseudo-class** is a keyword, preceded by a colon (:), added to the end of selectors to specify you want to style the selected elements, and only when they are in certain state. For example, you might want to style an element only when it is being hovered over by the mouse pointer.
+
+Examples
+* :active
+* :hover
+* :target
+* :first-child
+
+> **Pseudo-elements** are very much like pseudo-classes, but they have differences. They are keywords, this time preceded by two colons (::), that can be added to the end of selectors to select a certain part of an element.  They are specific to, for example, a tag's content.
+
+Examples
+* ::after
+* ::before
+* ::first-letter
+* ::first-line
+* ::selection
+* ::backdrop
