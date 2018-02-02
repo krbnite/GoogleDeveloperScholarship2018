@@ -139,7 +139,17 @@ EXAMPLE
 </html>
 ```
 
-## Mozilla CSS Reference
-https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
+##  CSS References
+* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
+* https://css-tricks.com/almanac/
 
+## Stuff
+* What property is used to italicize text?
+  - font-style
+* Underline?
+  - text-decoration
+* Uppercase?
+  - text-transform
+* Bold?
+  - font-weight
 
