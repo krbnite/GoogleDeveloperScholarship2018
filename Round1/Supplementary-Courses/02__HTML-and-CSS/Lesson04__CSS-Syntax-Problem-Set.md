@@ -176,3 +176,193 @@ Examples
 * ::first-line
 * ::selection
 * ::backdrop
+
+
+## Quiz:  Classes and IDs
+```html
+<!DOCTYPE html>
+
+<!-- Instructions: Using the provided HTML and CSS, add the correct 
+attributes to the HTML to replicate the same webpage pictured below. -->
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Using Attributes Quiz</title>
+	<style>
+        body {
+            font-family: Arial; 
+        }
+        #to-do-list {
+            width: 400px;
+            background: #2e3d49;
+            padding: 10px 20px;
+        }
+        .title {
+            color: #fff;
+        }
+        .underline {
+            text-decoration: underline;
+        } 
+        .list {
+            list-style-type: circle;
+            text-align: left;
+            font-size: 16px;
+            color: #1fba58;
+            line-height: 24px;
+        }
+        .finished {
+            color: #f4442f;
+            text-decoration: line-through;
+        }
+	</style>
+</head>
+<body>
+	<div id="to-do-list" >
+		<h1 class="title">My To-Do List</h1>
+		<h2 class="title underline">Chores</h2>
+		<ul class="list">
+			<li>load the diswasher</li>
+			<li>vacuum living room</li>
+			<li>take out garbage</li>
+			<li class="finished">sweep the garage</li>
+		</ul>
+		<h2 class="title underline">Homework</h2>
+		<ul class="list">
+			<li class="finished">brainstorm ideas for Science project</li>
+			<li class="finished">finish Calculus 2 problems</li>
+			<li>study for Programming midterm :P</li>
+            <li>finish Project 0 on Udacity FEND</li>
+			<li class="finished">find sources for Biology research paper</li>
+			<li>read first two chapters of The Art of War</li>
+		</ul>
+        <h2 class="title underline">Party</h2>
+        <ul class="list">
+            <li class="finished">send out invitations</li>
+            <li>reserve party room at restaurant</li>
+            <li>order the cake!</li>
+        </ul>
+	</div>
+</body>
+</html>
+```
+
+## I'm not Slacking
+Look at the .top selector's declaration box: I thought it was cool that you can
+specify a default background image.
+
+To have rounded corners, use the border-radius property.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slacker Card</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <meta name="udacity-grader" content="tests.json">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #222;
+    }
+    .card {
+      height: 475px;
+      width: 325px;
+      box-shadow: 0px 5px 15px 0px rgba(153,153,153,0.5);
+      border-radius: 4px;
+    }
+    .top {
+      height: 55%;
+      border-radius: 4px 4px 0px 0px;
+      border: 1px solid #ddd;
+      padding: 0px 16px;
+    }
+    .name {
+      padding-top: calc(475px * 0.40);
+      margin: 0px;
+    }
+    .status {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-left: 4px;
+
+      border-radius: 5px;
+      background-color: #60D156;
+    }
+    .title {
+      margin-top: 8px;
+    }
+    .middle {
+      height: 5%;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      padding: 0px 16px;
+    }
+    .time {
+      color: #444;
+      font-size: 0.8em;
+      padding-top: 0.2em;
+    }
+    .bottom {
+      height: 40%;
+      border-radius: 0px 0px 4px 4px;
+      border: 1px solid #ddd;
+      padding: 8px 16px;
+    }
+    .profile-action {
+      display: block;
+      width: 100%;
+      height: 32px;
+      font-size: 1em;
+      text-align: left;
+
+      border: 0px;
+      background-color: white;
+    }
+    .profile-action:hover {
+      background-color: #00A5D2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="card">
+      <div class="top">
+        <h3 class="name">Udacity Stufent <span class="status"></span></h3>
+        <p class="title">Learner Extraordinaire</p>
+      </div>
+      <div class="middle">
+        <div class="time">12:34 PM local time</div>
+      </div>
+      <div class="bottom">
+        <button class="profile-action">View preferences</button>
+        <button class="profile-action">Open account settings</button>
+        <button class="profile-action">Edit your profile</button>
+        <button class="profile-action">View your files</button>
+        <button class="profile-action">Set yourself away</button>
+      </div>
+    </div>
+  </section>
+  <section>
+    <p>
+      <em>Note: the buttons have class <code>profile-action</code></em>
+    </p>
+  </section>
+</body>
+</html>
+```
+
+
+## How to link to a style sheet
+
+Before your webpage can use the stylesheet, you need to link to it. To do this, you'll need to create a <link> to your stylesheet in your HTML. To create a link, simply type the following inside the <head> of your HTML.
+
+```
+<link href="path-to-stylesheet/stylesheet.css" rel="stylesheet">
+```
