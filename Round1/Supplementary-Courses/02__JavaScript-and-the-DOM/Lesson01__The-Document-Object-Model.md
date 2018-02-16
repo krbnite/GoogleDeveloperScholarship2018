@@ -112,11 +112,78 @@ Say you go to google.com:
  So, we know that `Node` is an Interface... Just like a (child) class can inherit properties and methods
  from another (parent) class, an interface can inherit from another interace.  So, for example, 
  there is the Element Interface, which inherits from the Node Interface.  A specific instance of an Element Node
- is an element class, instances of which are element objects. ....
- 
- Actually... I'm not sure I got this down.  He mentioned "class" once before, then never again: only refers
- to interfaces.  
+ is an element class (e.g., class EL), instances of which are objects of that class (e.g., EL objects). ....
  
  https://developer.mozilla.org/en-US/docs/Web/API/Node
  https://developer.mozilla.org/en-US/docs/Web/API/Element
  https://developer.mozilla.org/en-US/docs/Web/API
+
+### Classes and Interfaces in JavaScript
+This got me all a bit flustered, so I began reading about classes, interfaces, and objects in JavaScript.  
+
+A major takeaway
+is to remember that the DOM is not JavaScript: it is its own thing, and JavaScript in the browser has a system of dealing with 
+that thing.  So, independent of JavaScript, the DOM has DOM interaces, etc.
+
+Another major theme is that, yes, you can technically use design patterns to implement traditional classes and interfaces
+in JavaScript, but this is through a more-or-less brute force technique known as "Duck Typing."  OOP in JavaScript
+is not traditional OOP; it implements a different approach to OOP called prototype-based OOP.  Since this can be alien to
+developers from traditional OOP backgrounds, some syntactical sugar has been added in ES6 to make class and interface
+implementation \*feel\* like traditional OOP (but it is still prototypical OOP underneath the hood)>
+
+From an [MDN Page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain):
+> JavaScript is a bit confusing for developers experienced in class-based languages (like Java or C++), as it is dynamic and does not provide a class implementation per se (the class keyword is introduced in ES2015, but is syntactical sugar, JavaScript remains prototype-based).
+>
+> When it comes to inheritance, JavaScript only has one construct: objects. Each object has a private property which holds a link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain.
+>
+> Nearly all objects in JavaScript are instances of Object which sits on the top of a prototype chain.
+>
+>While this confusion is often considered to be one of JavaScript's weaknesses, the prototypal inheritance model itself is, in fact, more powerful than the classic model. It is, for example, fairly trivial to build a classic model on top of a prototypal model.
+
+From [another MDN page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction):
+> JavaScript and Java are similar in some ways but fundamentally different in some others. The JavaScript language resembles Java but does not have Java's static typing and strong type checking. JavaScript follows most Java expression syntax, naming conventions and basic control-flow constructs which was the reason why it was renamed from LiveScript to JavaScript.
+>
+> In contrast to Java's compile-time system of classes built by declarations, JavaScript supports a runtime system based on a small number of data types representing numeric, Boolean, and string values. JavaScript has a prototype-based object model instead of the more common class-based object model. The prototype-based model provides dynamic inheritance; that is, what is inherited can vary for individual objects. JavaScript also supports functions without any special declarative requirements. Functions can be properties of objects, executing as loosely typed methods.
+
+
+
+* Wiki: [Prototype-Based Programming](https://en.wikipedia.org/wiki/Prototype-based_programming)
+* MDN: [Inheritance and the Prototype Chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+* [JavaScript Interfaces](https://www.webreflection.co.uk/blog/2016/03/23/javascript-interfaces)
+* [What's the difference between "declare class" and "interface" in typescript](https://stackoverflow.com/questions/14345485/whats-the-difference-between-declare-class-and-interface-in-typescript)
+* [Does JavaScript have the Interface Type such as Java's Interface](https://stackoverflow.com/questions/3710275/does-javascript-have-the-interface-type-such-as-javas-interface)
+* Wiki: [Duck Typing](https://en.wikipedia.org/wiki/Duck_typing)
+* MDN: [JavaScript Introduction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction)
+
+-----------------------------
+
+## Some Misc
+From MDN ([Grammar and Types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types)):
+* "JavaScript borrows most of its syntax from Java, but is also influenced by Awk, Perl and Python."
+* Scopes: global, function, and block
+  - global scope: accessible from anywhere (unless var name is overridden inside function or block)
+  - function scope: accessible inside function and its descendants
+  - block scope: accessible inside block {}, e.g., only inside a while loop
+    * NOTE: block scope is only defined and implemented in ECMAScript2015 and after
+* On declaring vars:
+  - You can choose to not use "let" or "var", but it is not advised b/c it provides little control (e.g., if x is an important global var, but is then declared w/o "let" or "var" inside a function, then JavaScript thinks you want to overwrite the global var, which is not likely what you want to do).
+  - "With the keyword var. For example, var x = 42. This syntax can be used to declare both local and global variables."
+  - "With the keyword let. For example, let y = 13. This syntax can be used to declare a block-scope local variable." This means that if you declare a var inside something like a loop or if-statement (a block), then it is not defined outside that block.  This gives you more control, e.g., the variable cannot be accidentally or incorrectly used outside the block.
+* Reminder: beware variable hoisting
+* Reminder: function declarations also get hoisted; function expressions do not
+* str2num: parseInt('1.23'); parseFloat('1.23'); +'1.23' (unary operator)
+* Extra Comma (makes diffs easier to read): [1,2,3,]  
+* RegExp Literals are a thing, e.g.: var re = /ab+c/;  
+  - want to look into this more!!!!!
+* String Templates (like string.format(var=val) in Python:  var name='Kevin'; console.log(`My name is ${name}`)
+
+From MDN's [Control Flow and Error Handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling) tutorial:
+* Exception Handling Statements:
+  - [throw statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#throw_statement)
+    * e.g., `if (<expression>) { throw 'fUp'; }`
+  - [try...catch statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#try...catch_statement)
+    * this is just like try/except from Python (even has a finally block)
+
+I really should continue to go through these MDN JavaScript tutorials.
+
+
