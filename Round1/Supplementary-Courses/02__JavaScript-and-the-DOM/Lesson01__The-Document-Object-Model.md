@@ -155,9 +155,39 @@ From [another MDN page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 * Wiki: [Duck Typing](https://en.wikipedia.org/wiki/Duck_typing)
 * MDN: [JavaScript Introduction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction)
 
+
+## More on the DOM and Nodes, Etc
+I think this particular lesson really requires a little extra reading on the DOM.  It goes over things a little too
+quickly to really get a strong feel for what's going on.
+
+Luckily, MDN has a tutorial: [Introduction to the DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+
+> The DOM is not a programming language, but without it, the JavaScript language wouldn't have any model or notion of web pages, HTML documents, XML documents, and their component parts (e.g. elements). Every element in a document—the document as a whole, the head, tables within the document, table headers, text within the table cells—is part of the document object model for that document, so they can all be accessed and manipulated using the DOM and a scripting language like JavaScript.
+
+Here's another gem:
+> In the beginning, JavaScript and the DOM were tightly intertwined, but eventually, they evolved into separate entities. The page content is stored in the DOM and may be accessed and manipulated via JavaScript, so that we may write this approximative equation:
+>
+> API (HTML or XML page) = DOM + JS (scripting language)
+
+This separation was intentional: JS can be swapped out, e.g., with Python:
+```python
+# Python DOM example
+import xml.dom.minidom as m
+doc = m.parse("C:\\Projects\\Py\\chap1.xml");
+doc.nodeName # DOM property of document object;
+p_list = doc.getElementsByTagName("para");
+```
+
+<><><><><><><><><><><>
+Continue reading this DOM tutorial when you come back!
+[Introduction to the DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+
 -----------------------------
 
 ## Some Misc
+I got into reading some extraneous material on the MDN website.  This stuff is not exactly related to the current
+lesson notes (but not "not related" either).
+
 From MDN ([Grammar and Types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types)):
 * "JavaScript borrows most of its syntax from Java, but is also influenced by Awk, Perl and Python."
 * Scopes: global, function, and block
