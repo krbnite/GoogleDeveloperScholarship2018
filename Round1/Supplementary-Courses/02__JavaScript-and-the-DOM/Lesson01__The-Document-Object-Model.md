@@ -77,6 +77,47 @@ document.getElementsByTagName('p');
 
 These functions look like they return lists, but the return objects are actually of object type `HTMLCollection`.
 
+### One function to rule them all... Kind of
+jQuery was huge when it first came out: instead of having to write different code for each different browser,
+jQuery allowed web developers to abstract this away and just focus on the code's function.  jQuery took care
+of the browser stuff underneath the hood.  Since its come out, all the popular browsers have been much 
+better and more committed at adhering to various web standards, so jQuery's utility has declined.  However,
+jQuery left its impact on web development: for example, there is a standard web fcn called `.querySelector()`
+that allows you to select tags by ID, class, or name, with the caveat that it only select the first found
+element that matches.  
+
+```js
+document.querySelector('#header')
+document.querySelector('.header')
+document.querySelector('header')
+```
+
+This means you do not need a different function for each type of CSS element...kind of. The
+fcns outlined above are still needed to return lists of matches...kind of.  That is, you can instead
+use `.querySelectorAll()` as well.
+
+```js
+// Write the .querySelectorAll() code to find all paragraph elements that are descendents of elements 
+//   that have the class: articles
+document.querySelectorAll('.articles p');
+```
+
+Note: the "list" that is returned by `.querySelectorAll()` is not a JavaScript list, but another type of 
+object called a `NodeList`. It has a `.forEach()` method, but it's not supported by all browsers... W/ a NodeList,
+you're better off just using a regular for loop:
+
+```js
+const allHeaders = document.querySelectorAll('header');
+for(let i = 0; i < allHeaders; i++){
+    console.dir(allHeaders[i]);
+}
+```
+
+* [querySelectorAll](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
+* [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
+
+
+
 ## Nodes, Elements, and Interfaces...
 Remember: to get to the DOM, we start with an HTML text file that has HTML tags; the tags are tokenized and 
 turned into nodes; the final product is the DOM.
