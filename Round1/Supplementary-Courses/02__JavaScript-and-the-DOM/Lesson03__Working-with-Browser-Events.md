@@ -97,12 +97,39 @@ google.click()
 
 Pretty cool!
 
-------------------------
-
+### Wrap up for this part...
 * MDN: [List of Events](https://developer.mozilla.org/en-US/docs/Web/Events)
 
 Read this in a day or two for review:
 * MDN: [Introduction to Events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
 
+--------------------------------------
 
+# Remove an Event Listener
+Object equality in JavaScript might be a little confusing at first:
+```js
+# computes to false
+{ name: 'Kevin' } === { name: 'Kevin' }
+```
+
+You might wonder: Why would this be false? They are clearly the same object!
+
+But ask yourself: Are they the same object, or do they just look the same? For example, if I gave you
+two KitKat bars, are they the same KitKat bar -- or just two object that look/taste the same?
+
+In JavaScript, objects are not treated equal if they look the same --- only if they are the same.  If I call
+a rice cake "my rice cake" and you call it "Kevin's rice cake," then these two objects are equal: not only
+do they look like the same object, but are the same object!  
+
+```js
+const myShirt = {clothing: 'shirt'};
+const anotherShirt = {clothing: 'shirt'};
+const kevinsShirt = myShirt;
+myShirt == anotherShirt
+  false
+myShirt == kevinsShirt
+  true
+```
+
+...only about halfway through this.
 
