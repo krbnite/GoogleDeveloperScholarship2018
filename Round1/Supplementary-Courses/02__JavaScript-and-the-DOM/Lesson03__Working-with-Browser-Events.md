@@ -131,5 +131,28 @@ myShirt == kevinsShirt
   true
 ```
 
-...only about halfway through this.
+## Why does object identity matter to event listeners?
+To remove an event listener, you must pass the same exact function/listener to 
+`.removeEventListener()`.  This means, if you plan on removing an event listener, you 
+cannot use a one-time anonymous function.
 
+```js
+function myEventListeningFunction() {
+    console.log('howdy');
+}
+
+// adds a listener for clicks, to run the `myEventListeningFunction` function
+document.addEventListener('click', myEventListeningFunction);
+
+// immediately removes the click listener that should run the `myEventListeningFunction` function
+document.removeEventListener('click', myEventListeningFunction);
+```
+
+In Developer Tools, there is a tab for looking at Event Listeners.  It will show event listeners that
+are defined for a selected page element.  You also have the option at looking at event listeners for 
+ancestors of that element.  When looking at an event listener, you can right/2-finger click the f()
+symbol to bring up the option for viewing the event listener's code...
+
+<video width="400" controls>
+  <source src="https://www.youtube.com/watch?time_continue=118&v=chX2ZNzGXZo">
+</video>
