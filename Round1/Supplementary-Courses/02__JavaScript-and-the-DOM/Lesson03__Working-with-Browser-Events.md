@@ -153,6 +153,5 @@ are defined for a selected page element.  You also have the option at looking at
 ancestors of that element.  When looking at an event listener, you can right/2-finger click the f()
 symbol to bring up the option for viewing the event listener's code...
 
-<video width="400" controls>
-  <source src="https://www.youtube.com/watch?time_continue=118&v=chX2ZNzGXZo">
-</video>
+[Video on this from course.]("https://www.youtube.com/watch?v=chX2ZNzGXZo")
+
