@@ -153,5 +153,84 @@ are defined for a selected page element.  You also have the option at looking at
 ancestors of that element.  When looking at an event listener, you can right/2-finger click the f()
 symbol to bring up the option for viewing the event listener's code...
 
-[Video on this from course]("https://www.youtube.com/watch?v=chX2ZNzGXZo")
+[Video from course](https://www.youtube.com/watch?v=chX2ZNzGXZo)
+
+----------------------------------------------
+
+We then went over how to avoid using too many event listeners; specifically, you probably shouldn't put
+an event listener in a for loop.
+
+```js
+// BAD CODE:  Creates 200 event listeners, each using a unique instance of the listener function
+const myCustomDiv = document.createElement('div');
+
+for (let i = 1; i <= 200; i++) {
+    const newElement = document.createElement('p');
+    newElement.textContent = 'This is paragraph number ' + i;
+
+    newElement.addEventListener('click', function respondToTheClick(evt) {
+        console.log('A paragraph was clicked.');
+    });
+
+    myCustomDiv.appendChild(newElement);
+}
+
+document.body.appendChild(myCustomDiv);
+```
+
+One way to make this code better is to define the event listener outside of the for loop, then
+call it from within: this will still create 200 event listeners, but only use a single listener 
+function.
+
+```js
+const myCustomDiv = document.createElement('div');
+
+function respondToTheClick() {
+    console.log('A paragraph was clicked.');
+}
+
+for (let i = 1; i <= 200; i++) {
+    const newElement = document.createElement('p');
+    newElement.textContent = 'This is paragraph number ' + i;
+
+    newElement.addEventListener('click', respondToTheClick);
+
+    myCustomDiv.appendChild(newElement);
+}
+
+document.body.appendChild(myCustomDiv);
+```
+
+How can we use a single event listener w/ a single instance of the listener 
+function?  One way to do this is add the event listener to the parent node of
+the list we've been generating.  However, this conflates the identity of all
+list items... So what we really want to do is solve for 3 constraints:  single
+event listener, single instance of listener function, and preservation of list item 
+identity.
+
+### Event Delegation
+`event.target` gives us access to the actual element that was clicked on.  This means
+we can modify the code so that (i) the event listener only fires if a list item was
+directly clicked on (not any random part of the screen), and (ii) modify list elements
+if we desire.
+
+...
+
+## DOM Readiness
+This section was about making sure to place your JavaScript code at the right part of the page,
+which loads from top to bottom --- or to use a conditional if putting the JS in the HTML <head>.
+
+### The DOMContentLoaded Event Listener
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          document.querySelector('footer').style.backgroundColor = 'purple';
+      });
+    </script>
+```
+
 
