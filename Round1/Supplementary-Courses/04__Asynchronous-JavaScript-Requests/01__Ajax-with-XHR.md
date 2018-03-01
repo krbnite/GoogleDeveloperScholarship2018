@@ -206,11 +206,19 @@ to making the request: we must include some header info.
 const searchedForText = 'hippos';
 const unsplashRequest = new XMLHttpRequest();
 function addImage(){
+  debugger;
 }
 
 unsplashRequest.open('GET', `https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`);
 unsplashRequest.onload = addImage;
-unsplashRequest.setRequestHeader('Authorization', 'Client-ID <your-client-id>');
+unsplashRequest.setRequestHeader('Authorization', 'Client-ID <clientId>');
 unsplashRequest.send();
 ```
+
+By putting debugger in the function addImage(), we can use Developer Tools to look at what the 
+response is, so that we can then write a function to deal with it appropriately.
+
+<figure>
+  <img src="./images/javascript-debugger-in-developer-tools.png" width="500">
+</figure>
 
