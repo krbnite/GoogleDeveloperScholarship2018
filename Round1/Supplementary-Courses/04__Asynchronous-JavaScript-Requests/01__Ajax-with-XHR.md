@@ -216,9 +216,40 @@ unsplashRequest.send();
 ```
 
 By putting debugger in the function addImage(), we can use Developer Tools to look at what the 
-response is, so that we can then write a function to deal with it appropriately.
+response is in the Sources tab, so that we can then write a function to deal with it appropriately.
 
 <figure>
   <img src="./images/javascript-debugger-in-developer-tools.png" width="500">
 </figure>
+
+At the bottom of the Sources tab is a pane w/ tabs Scope and Watch.  In the scope pane, the
+"this" object being looked at is the XMLHttpRequest object we are working with. You can see
+that its `.onload` function is set to `addImage`.  Further below, you can see a response 
+attribute: it is filled with JSON data.  This tells us that we want our addImage function to
+first parse the JSON data.
+
+NOTE: this code comes from the project we are developing; `responseContainer` is defined therein (this
+function will throw an error w/o defining it).
+```js
+function addImage() {
+  let htmlContent = '';
+  const data = JSON.parse(this.responseText);
+  const firstImage = data.results[0];
+  if(data && data.results && data.results[0]) {
+    htmlContent = `<figure>
+      <img src="${firstImage.urls.regular}" alt=${searchedForText}">
+      <figcaption>${searchedForText} by ${firstImage.user.name}</figcaption>
+    <figure>`;
+  } else {
+    htmlContent = '<div class="error-no-image">No images available</div>'
+  }
+  responseContainer.insertAdjacentHTML('afterbegin', htmlContent);
+}
+```
+
+At this point, you should just check out the course project for Lesson 1.  (Otherwise, I'm
+really just repeating a lot of info.)
+
+
+
 
