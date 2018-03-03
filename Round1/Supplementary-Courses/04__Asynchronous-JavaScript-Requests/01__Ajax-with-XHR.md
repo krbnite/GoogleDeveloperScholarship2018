@@ -251,5 +251,24 @@ At this point, you should just check out the course project for Lesson 1.  (Othe
 really just repeating a lot of info.)
 
 
+------------------------------
 
+Wow, we made a pretty cool app!
+
+Check it out here:
+
+[Lesson 1: Async w/ XHR](https://github.com/krbnite/GoogleDeveloperScholarship2018/tree/master/Round1/Supplementary-Courses/04__Asynchronous-JavaScript-Requests/course-ajax/lesson-1-async-w-xhr)
+
+---------------------------
+
+# recap
+## To Send An Async Request
+* create an XHR object with the XMLHttpRequest constructor function
+* use the .open() method - set the HTTP method and the URL of the resource to be fetched
+* set the .onload property - set this to a function that will run upon a successful fetch
+* set the .onerror property - set this to a function that will run when an error occurs
+* use the .send() method - send the request
+
+## To Use The Response
+* use the .responseText property - holds the text of the async request's response
 
