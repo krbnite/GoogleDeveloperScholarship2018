@@ -76,7 +76,7 @@
     } else {
       htmlContent = '<div class="error-no-image">No images available</div>'
     }
-    responseContainer.insertAdjacentHTML('afterbegin', htmlContent);
+    responseContainer.insertAdjacentHTML('beforeend', htmlContent);
   }
   // Next Up: Add the list course instructor made to
   // After: Add another NYT API
