@@ -72,5 +72,8 @@
   //  responseContainer.insertAdjacentHTML('beforeend', htmlContent);
   //}
   //
-  //function requestError() {};
+  function requestError(e) {
+    console.log(e);
+  };
+  
 })();
