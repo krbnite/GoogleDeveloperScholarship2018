@@ -90,20 +90,36 @@ fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, 
 
 > The .json() method on a Response object returns a Promise, so we need to chain on another .then() to actually get and start using the returned data. This time, let's call addImage to pass it the returned data:
 ```js
-    fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
-      headers: {
-        Authorization: `Client-ID ${unsplashId}`
-    }).then(function(response) {
-      //debugger; // work with the returned response
-      return response.json();
-    }).then(addImage);
+fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
+  headers: {
+    Authorization: `Client-ID ${unsplashId}`
+  }).then(function(response) {
+    //debugger; // work with the returned response
+    return response.json();
+  }).then(addImage);
 
-    function addImage(data) {
-          debugger;
-    }
+function addImage(data) {
+  debugger;
+};
 ```
 
 
 Using .blob() will extract the image body from the response.
+
+---------------------
+
+## Don't forget about Arrow Functions!
+
+```js
+fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
+  headers: {
+    Authorization: `Client-ID ${unsplashId}`
+  }).then(response => response.json())    // arrow fcns reduce code's visual complexity
+  .then(addImage);
+
+function addImage(data) {
+  debugger;
+};
+```
 
 
