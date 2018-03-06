@@ -74,6 +74,36 @@ fetch('http://example.com/movies.json')
   });
   
   https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
-  
-  
+    
 ```
+
+The second argument of fetch can be a Headers object, or a regular object.  The above
+examples mostly use the Header object.  Here is how to change the request type using
+a regular object:
+```js
+fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
+    method: 'POST'
+});
+```
+
+--------------------------
+
+> The .json() method on a Response object returns a Promise, so we need to chain on another .then() to actually get and start using the returned data. This time, let's call addImage to pass it the returned data:
+```js
+    fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
+      headers: {
+        Authorization: `Client-ID ${unsplashId}`
+    }).then(function(response) {
+      //debugger; // work with the returned response
+      return response.json();
+    }).then(addImage);
+
+    function addImage(data) {
+          debugger;
+    }
+```
+
+
+Using .blob() will extract the image body from the response.
+
+
