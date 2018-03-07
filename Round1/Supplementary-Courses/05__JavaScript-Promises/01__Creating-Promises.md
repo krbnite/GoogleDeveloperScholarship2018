@@ -146,8 +146,14 @@ that are nearly identical to that in Python (mod the syntax).
 ----------------------------------------------------------------
 
 
-
-
 ## Some References
 * JavaScriptIsSexy: [JavaScript Callback Functions](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)
 * JavaScriptIsSexy: [Understand JavaScript Closures with Ease](http://javascriptissexy.com/understand-javascript-closures-with-ease/)
+
+----------------------------------------------------------------
+
+
+* http://www.exoplanetexplorer.com/
+* https://www.polymer-project.org/
+* https://developers.google.com/web/tools/polymer-starter-kit/?hl=en
+
