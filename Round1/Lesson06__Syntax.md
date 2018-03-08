@@ -13,7 +13,7 @@ function getClothing(isCold) {
   if (isCold) {
     var freezing = 'Grab a jacket!';
   } else {
-    var hot = 'It's a shorts kind of day.';
+    var hot = "It's a shorts kind of day.";
     console.log(freezing);
   }
 }
@@ -34,7 +34,7 @@ function getClothing(isCold) {
   if (isCold) {
     freezing = 'Grab a jacket!';
   } else {
-    hot = 'It's a shorts kind of day.';
+    hot = "It's a shorts kind of day.";
     console.log(freezing);
   }
 }
@@ -56,7 +56,7 @@ function getClothing(isCold) {
   if (isCold) {
     const freezing = 'Grab a jacket!';
   } else {
-    const hot = 'It's a shorts kind of day.';
+    const hot = "It's a shorts kind of day.";
     console.log(freezing);
   }
 }
@@ -115,7 +115,7 @@ for (const i=0; i<10; i++) { console.log(i); };
 
 // GOOD
 for (let i=0; i<10; i++) { console.log(i); };
-
+```
 
 ## What about var: shots fired!
 > "Is there any reason to use var anymore? Not really."
@@ -170,9 +170,12 @@ function createAnimalTradingCardHTML(animal) {
 ```
 
 # Destructuring
-Destructuring is the same thing as "unpacking" in Python.  
+Destructuring is basically the same thing as "unpacking" in Python.  There are separate
+ways to destructure and array and to destructure an object.
 
-```
+## Destructuring an Array
+
+```js
 const arr = [1,2,3];
 
 // Old way
@@ -184,5 +187,198 @@ let z = arr[2];
 let [u,v,w] = arr;  // save 3 components in 3 separate vars
 let [a,b] = arr;    // save first 2 components of arr in 2 separate vars
 let [z] = arr;      // save first component of arr in its own var
+```
+
+## Destructuring an Object
+```js
+const obj = {a: 1, b: 2, c: 3, d: 4, e: 5};
+
+// Old way
+const a_old = obj.a;
+const b_old = obj.b;
+const d_old = obj.d;
+
+// New ES6 way
+const {a,b,d} = obj;  // specify object keys to extract
+
+```
+
+### Plucking out array elements
+```js
+const things = ['red', 'basketball', 'paperclip', 'green', 'computer', 'earth', 'udacity', 'blue', 'dogs'];
+const [color1,,,color2,,,,color3,] = things;
+```
+
+### This Caveat
+You can extract function from objects by destructuring, but beware of `this`: any 
+object method that self refernces with `this` will still have `this` in the extracted
+function, but will have not object to self reference... 
+
+Example
+```js
+const circle = {
+  radius: 10,
+  color: 'orange',
+  getArea: function() {
+    return Math.PI * this.radius * this.radius;
+  },
+  getCircumference: function() {
+    return 2 * Math.PI * this.radius;
+  }
+};
+
+let {radius, getArea, getCircumference} = circle;
+getArea()
+  NaN
+```
+
+# Object Shorthands
+## Object Literal Shorthand
+
+```js
+let type = 'quartz';
+let color = 'rose';
+let carat = 21.29;
+
+// Old, time-consuming way
+const gemstone_old = {
+  type: type,
+  color: color,
+  carat: carat
+};
+
+// New ES6 way
+const gemstone = {type, color, carat};
+```
+
+Point: why type something twice? If you want to put a variable in an object with the same name and value, just 
+put the variable in like you would in a array. Done!
+
+## Object Method Shorthand
+```js
+let type = 'quartz';
+let color = 'rose';
+let carat = 21.29;
+
+// Old, chit-chatty way
+const gemstone_old = {
+  type,
+  color,
+  carat,
+  calculateWorth: function() {
+    // will calculate worth of gemstone based on type, color, and carat
+  }
+};
+
+// New ES6 way
+let gemstone = {
+  type,
+  color,
+  carat,
+  calculateWorth() { ... }
+};
+```
+
+Point: ES6 will figure out if you're defining a function by the (){//stuff}.  No need to write any more than that!
+
+# More For
+You've got
+```js
+for (let idx=0; idx < arr.length; idx++) { console.log(arr[idx]*arr[idx]); };
+```
+
+And you've got a simpler version of basically the same thing
+```js
+for (let idx in arr) { console.log(arr[idx]*arr[idx]); };
+```
+
+But not everything has an index!  Think about Python, where we can easily iterate over
+dictionaries.  JavaScript's "for idx in" notation looks like it has the same thing to offer, 
+but idx is still an index in JavaScript, not an item.
+
+In ES6, this "for item [in]"  functionality found in Python is included, but since the "for...in"
+notation was already taken, the notation for this is "for item of":
+
+```js
+for (let item of arr) { console.log(item*item); };
+```
+
+Example
+```js
+const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+
+// Capitalize first letter
+for (let day of days) { 
+    console.log(day.charAt(0).toUpperCase()+day.slice(1)); 
+}
+```
+
+# The Spread Operator, ...
+The spread operator spreads out a list. 
+
+How do you combine these two arrays? In Python, you might use the "+" operator, but
+in JavaScript that coerces the two arrays into a single string.  In classical JS, lists have a
+`.concat()` method. In ES6, you can also use the spread operator.
+```js
+const a = [1,2,3];
+const b = [4,5,6];
+
+// Old way
+console.log(
+  a.concat(b)
+);
+
+// ES6 way
+console.log(
+  [...a, ...b]
+```
+
+# The Rest Operator, ...
+Just like ... unpacks (or "spreads out") an array, it can be used to pack an array as well.
+```js
+const order = [20.17, 18.67, 1.50, "cheese", "eggs", "milk", "bread"];
+const [total, subtotal, tax, ...items] = order;
+console.log(total, subtotal, tax, items);
+```
+
+The `...items` bit says to pack the rest of `order` into `items`.
+
+## Use the Rest Operator w/ Variadic Functions (like \*args in Python)
+A variadic function is one that takes in a variable number of inputs.
+
+```js
+// Old way to define a sum
+function sum() {
+  let total = 0;  
+  for(const argument of arguments) {
+    total += argument;
+  }
+  return total;
+}
+
+// ES6 way
+function sum(...nums) {
+  let total = 0;  
+  for(const num of nums) {
+    total += num;
+  }
+  return total;
+}
+```
+
+### Quiz
+```js
+function average(...nums) {
+    if (nums.length > 0) {
+        let total=0;
+        for (const num of nums) {
+            total+=num;
+        }
+        avg = total/nums.length
+    } else {
+        avg = 0
+    }
+    return avg
+}
 ```
 
