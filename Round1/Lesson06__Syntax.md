@@ -464,3 +464,8 @@ needed a function declaration, you would not use an arrow function.
 For regular functions, the `this` keyword depends on how a function is called.  However, for arrow
 functions, `this` depends on **where** the arrow function is called.
 
+
+
+## Some more on This
+* https://www.quirksmode.org/js/this.html
+* http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/
