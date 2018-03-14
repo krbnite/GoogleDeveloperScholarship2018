@@ -15,3 +15,9 @@ Misc
 * https://cloud.google.com/public-datasets/
 * https://code.google.com/codejam/kickstart/
 * https://appliedcsskills.withgoogle.com
+
+------------------------------
+
+Hackathon will be on Glitch:
+* https://glitch.com/
+
