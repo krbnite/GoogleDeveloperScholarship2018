@@ -173,6 +173,61 @@ self.addEventListener('fetch', function(event) {
 });
 ```
 
+## Selectively Intercept Requests
+https://developer.mozilla.org/en-US/docs/Web/API/Request
 
+```js
+self.addEventListener('fetch', function(event) {
+  // TODO: only respond to requests with a
+  // url ending in ".jpg"
+  if (event.request.url.substr(-4) === '.jpg') {
+      event.respondWith(
+        fetch('/imgs/dr-evil.gif')
+  );
+  }
+});
+```
+
+## Error Handling
+```js
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    fetch(event.request).then(function(response) {
+      if (response.status === 404) {
+        // TODO: instead, respond with the gif at
+        // /imgs/dr-evil.gif
+        // using a network request
+        return fetch('/imgs/dr-evil.gif');
+      }
+      return response;
+    }).catch(function() {
+      return new Response("Uh oh, that totally failed!");
+    })
+  );
+});
+```
+
+# The Cache API: Caching & Serving Assets
+```js
+caches.open('my-stuff').then(function(cache) {
+  //...
+});
+```
+If the cache already exists, it is opened; else, it is created and opened.
+
+```js
+cache.put(request, response);
+cache.addAll([
+    '/foo',
+    '/bar',
+]);
+```
+
+In `cache.addAll()`, one failed request fails the whole thing...
+
+```js
+cache.match(request);
+caches.match(request); // searches through all caches, starting w/ oldest
+```
 
 
