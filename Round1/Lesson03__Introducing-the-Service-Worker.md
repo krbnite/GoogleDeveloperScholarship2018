@@ -134,5 +134,45 @@ the convention is to begin a method name with an underscore if one wants to let 
 know that this method should be treated as if it were private.
 
 
+--------------------------------------------------
+
+
+# ServiceWorker Life Cycle
+* a page must be refreshed twice for a ServiceWorker to begin its service
+* if the ServiceWorker is changed, the modified ServiceWorker will wait for all pages using the current version to stop
+
+### Chrome Canary
+* download it frequently: basically a nightly build of "bleeding edge" Chrome
+* has all new Chrome features, many of which are not in official Chrome release
+* https://www.google.com/chrome/browser/canary.html
+
+### ServiceWorker Services in DevTools
+
+
+1. In the Console tab, by default your code is against the document, but you can use the dropdown menu and choose your environment context to be the ServiceWorker
+2. In the Applications tab, there is a ServiceWorker section
+  -- you can unregister the ServiceWorker here so that you can register a new one from scratch (stop the current one and activate the new one)
+  -- you can make this your default setting by clicking on "Update on reload"
+
+Outside of DevTools, you can also unregister the old / register the new by holding on \<shift\> when you refresh 
+the page (shift+cmd+r).  The DevTools option makes it more developer-friendly.  Btw, the regular, awkward way to do this
+(e.g., as an app user) is to navigate away from any/all pages using the current ServiceWorker (super dev-unfriendly).
+
+--------------------------------------------------------
+
+```js
+self.addEventListener('fetch', function(event) {
+	// TODO: respond to all requests with an html response
+	// containing an element with class="a-winner-is-me".
+	// Ensure the Content-Type of the response is "text/html"
+  event.respondWith(
+    new Response('<strong class="a-winner-is-me">Yo!</strong>',{
+      headers: {'content-type': 'text/html'}
+    })
+  );
+});
+```
+
+
 
 
