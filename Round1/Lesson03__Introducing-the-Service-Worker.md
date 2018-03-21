@@ -216,6 +216,7 @@ caches.open('my-stuff').then(function(cache) {
 If the cache already exists, it is opened; else, it is created and opened.
 
 ```js
+// pass one of these into caches.open('my-stuff').then(function(cache){...} 
 cache.put(request, response);
 cache.addAll([
     '/foo',
@@ -229,5 +230,136 @@ In `cache.addAll()`, one failed request fails the whole thing...
 cache.match(request);
 caches.match(request); // searches through all caches, starting w/ oldest
 ```
+
+### Example
+```js
+self.addEventListener('install', function(event) {
+  var urlsToCache = [
+    '/',
+    'js/main.js',
+    'css/main.css',
+    'imgs/icon.png',
+    'https://fonts.gstatic.com/s/roboto/v15/2UX7WLTfW3W8TclTUvlFyQ.woff',
+    'https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff'
+  ];
+  event.waitUntil(
+    // TODO: open a cache named 'wittr-static-v1'
+    // Add cache the urls from urlsToCache
+    caches.open('wittr-static-v1').then(function(cache){
+      cache.addAll(urlsToCache);
+    })
+    //
+  );
+});
+
+self.addEventListener('fetch', function(event) {
+  // Leave this blank for now.
+  // We'll get to this in the next task.
+  event.respondWith(
+    caches.match(event.request).then(function(response){
+      if (response) return response;
+      return fetch(event.request);
+    })
+  );
+});
+```
+
+
+* https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker
+* https://developer.mozilla.org/en-US/docs/Web/API/Cache
+* https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage
+
+## Some Service Worker Goals
+* unobtrusive app updates
+* get user on latest version
+* continually update cache
+* cache photos, avatars...
+
+
+## Updates to CSS
+Task: Update CSS w/o disrupting the currently running version of site/app
+* go into public > scss and update SASS vars
+* change cache name in the install eventListener (e.g., v1 -> v2)
+
+```js
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    // TODO: change the site's theme, eg swap the vars in public/scss/_theme.scss
+    // Ensure at least $primary-color changes
+    // TODO: change cache name to 'wittr-static-v2'
+    caches.open('wittr-static-v2').then(function(cache) {
+      return cache.addAll([
+        '/',
+        'js/main.js',
+        'css/main.css',
+        'imgs/icon.png',
+        'https://fonts.gstatic.com/s/roboto/v15/2UX7WLTfW3W8TclTUvlFyQ.woff',
+        'https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff'
+      ]);
+    })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    // TODO: remove the old cache
+    caches.delete('wittr-static-v1')
+  );
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      return response || fetch(event.request);
+    })
+  );
+});
+```
+
+## Letting the User Know an Update is Ready
+When you register a service worker, a registration promise is returned, so we can
+use `.then`, etc.
+
+```js
+navigator.serviceWorker.register('/sw.js').then(function(reg){
+  // the promise returns a registration object w/ the
+  // following methods and properties
+  reg.unregister();
+  reg.update();
+  reg.installing;  // keeps track of SW state
+  reg.waiting;
+  reg.active;
+  reg.addEventListener('updatefound', function() {
+    // reg.installing has changed 
+  });
+})
+```
+
+The `reg.installing` object has a state property:
+```
+let sw = reg.installing;
+console.log(sw.state); // ...logs "installing"
+```
+
+`reg.state` can be:
+* installing
+* installed
+* activating (the activate event has fired, but is not yet complete)
+* activated  (ready to receive fetch events)
+* redundant  (the SW has been thrown away; happens when SW is superceded by new SW or fails to install)
+
+The service worker fires an event any time the state changes...
+```js
+let sw = reg.installing;
+sw.addEventListener('statechange', function() {
+  // sw.state has changed
+})
+```
+
+
+
+
+The registration object points to the Service Worker and gives us the ability
+to monitor and control the Service Worker's lifecycle.
 
 
