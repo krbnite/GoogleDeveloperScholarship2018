@@ -49,3 +49,84 @@ IDB Promised.
 IDB Promised wraps of IDB, making the API more intuitive, functional, and respectful of ES6 (e.g.,
 it works with and returns Promises, which IDB does not do).
 
+* IDB Promised: https://github.com/jakearchibald/idb
+
+-------------------------------------
+
+In app/public/js/idb-test:
+
+```js
+import idb from 'idb';
+
+const version = 1;
+var dbPromise = idb.open('test-db', version, function(upgradeDb) {
+  // * this fcn will upgrade the DB if version on page is less than 
+  //   the version specified in arguments
+  // * the upgradeDB parameter is how we access the DB; this object is
+  //   very similar to the original IndexedDB API
+  let keyValStore = upgradeDb.createObjectStore('keyval');
+  keyValStore.put('world', 'hello');
+});
+```
+
+An object store has methods:
+* put
+* add
+* delete
+* clear
+* get
+* getAll
+* getAllKeys
+* count
+
+Gotchya: The `.put()` method takes arguments (value, key) instead of (key, value).
+
+"Most of the IDB API is stupid, but for sensible reasons."
+
+Above, we created a database and put an objectStore inside it.  To access this database,
+we must create a transaction:
+
+```js
+dbPromise.then(function(db) {
+  // Tell transaction which objectStores we will be working with:
+  //   -- keyval: we specify the objectStore we created above, named 'keyval'
+  var tx = db.transaction('keyval'); 
+  
+  // the transaction object now contains the objectStores we specified
+  //   -- since we only specified one objectStore, this next step might seem pointless,
+  //      but more generally one can specify more than on objectStore in the transaction
+  var keyValStore = tx.objectStore('keyval');
+  
+  // Here, we return the data we are interested in
+  //   -- above, we only created one piece of data in this objectStore:
+  //      the (key,val) pair ('hello', 'world')
+  return keyValStore.get('hello');
+}).then(function(val) {
+  console.log('The value of "hello" is:', val)
+});
+```
+
+Ok, so we've seen how to create a database in IndexedDB using the IDB Promised API. Then, we
+saw how to add an objectStore to that DB and how to read objectStore data from that DB.  Let's
+now see how to add more data to the objectStore.
+
+```js
+dbPromise.then(function(db) {
+  // here, we specify which objectStore(s) we want to work with in the DB,
+  //   and also specify permissions ('readwrite')
+  var tx = db.transaction('keyval', 'readwrite');
+  
+  // here, we specify which objectStore in the transaction we want to work with
+  var keyValStore = tx.objectStore('keyval');
+  
+  // here, we put more data into the 'keyval' ojectStore
+  //   -- remember (key,val) pairs are read/written as (val,key)
+  keyValStore.put('bar', 'foo');
+  
+  // tx.complete is a Promise that fulfills if/when the transaction completes
+  //   and rejects if the transaction fails
+  return tx.complete;
+}).then(function() {
+  console.log('Added foo:bar to keyval objectStore');
+});
+
