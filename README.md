@@ -9,7 +9,7 @@ Notes and projects for #GrowWithGoogle 2018 Scholarship
 * https://codelabs.developers.google.com/
 * https://cloud.google.com/training/
 * https://developers.google.com/training/
-
+* [PWA Book by Google](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-concepts/content/)
 
 Misc
 * https://cloud.google.com/public-datasets/
