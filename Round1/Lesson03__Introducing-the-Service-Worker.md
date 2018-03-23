@@ -371,6 +371,6 @@ more helpful resources:
 * [Google's PWA Book](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-concepts/content/)
 * [Offline Cookbook](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/)
 * [The App Shell Model](https://developers.google.com/web/fundamentals/architecture/app-shell)
-
+* [Caching Files w/ Service Worker](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-codelabs/content/docs/lab_caching_files_with_service_worker.html)
 
 
