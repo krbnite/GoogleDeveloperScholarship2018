@@ -89,6 +89,7 @@ vim
 
 <img src="./images/tmux-vim-setup.png" width="500">
 
+
 Now, in the Nerd Tree file browser go to public > js > sw > index.js:
 ```js
 console.log('js')
@@ -361,5 +362,15 @@ sw.addEventListener('statechange', function() {
 
 The registration object points to the Service Worker and gives us the ability
 to monitor and control the Service Worker's lifecycle.
+
+--------------------------------------------------------------------
+
+This part of the course definitely assumes that I know way more than I do... Here are some
+more helpful resources:
+
+* [Google's PWA Book](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-concepts/content/)
+* [Offline Cookbook](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/)
+* [The App Shell Model](https://developers.google.com/web/fundamentals/architecture/app-shell)
+
 
 
