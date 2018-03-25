@@ -129,4 +129,41 @@ dbPromise.then(function(db) {
 }).then(function() {
   console.log('Added foo:bar to keyval objectStore');
 });
+```
 
+
+## New ObjectStore: Objects, all of the same kind
+For instance: people objects.
+
+The only way to add a new object store is to upgrade the DB, and to upgrade the DB you must
+specify a new version in the function call:
+
+```js
+import idb from 'idb';
+
+var dbPromise = idb.open('test-db', 2, function(updgradeDB) {
+  var keyValStore = upgradeDb.createObjectStore('keyval');
+  keyValStore.put('world', 'hello');
+  upgradeDb.createObjectStore('people'), { keyPath: 'name' }); // objects keys are name values
+});
+```
+
+However, the above code will throw an error... The DB already has keyValStore: this is not an upgrade! So,
+we actually need to use a case statement to add a new upgrade/version.  This is so people who do not have 
+the earlier version can build up to the latest version (important: do not use "break" statements so this
+flow happens correctly)... 
+
+```js
+import idb from 'idb';
+
+var dbPromise = idb.open('test-db', 2, function(updgradeDB) {
+  switch(upgradeDb.oldVersion) {
+    case 0: 
+      var keyValStore = upgradeDb.createObjectStore('keyval');
+      keyValStore.put('world', 'hello');
+      // do not break here!
+    case 1:
+      upgradeDb.createObjectStore('people'), { keyPath: 'name' }); // objects keys are name values
+      // do not break here!
+});
+```
