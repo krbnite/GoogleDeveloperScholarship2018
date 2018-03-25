@@ -156,6 +156,7 @@ flow happens correctly)...
 ```js
 import idb from 'idb';
 
+// Create db version x
 var dbPromise = idb.open('test-db', 2, function(updgradeDB) {
   switch(upgradeDb.oldVersion) {
     case 0: 
@@ -166,4 +167,129 @@ var dbPromise = idb.open('test-db', 2, function(updgradeDB) {
       upgradeDb.createObjectStore('people'), { keyPath: 'name' }); // objects keys are name values
       // do not break here!
 });
+
+// db v1: Read... 
+dbPromise.then(function(db) {
+  var tx = db.transaction('keyval');
+  var keyValStore = tx.objectStore('keyval');
+  return keyValStore.get('hello');
+}).then(function(val) {
+  console.log('hello', val);
+});
+
+
+// db v1: Write...
+dbPromise.then(function(db) {
+  var tx = db.transaction('keyval', 'readwrite');
+  var keyValStore = tx.objectStore('keyval');
+  keyValStore.put('bar', 'foo');
+  keyValStore.put('shark', 'favoriteAnimal');
+  return tx.complete;
+}).then(function() {
+  console.log('Added favoriteAnimal:shark to keyval');
+});
+
+// db v2: WRITE: create a transaction for the person store
+dbPromise.then(function(db) {
+  var tx = db.transaction('people', 'readwrite');
+  var people = tx.objectStore('people);
+  
+  people.put({
+    name: 'Jake Archibald',
+    age: 25,
+    favoriteAnimal: 'cat',
+  });
+  
+  people.put({
+    name: 'George Funk',
+    age: 49,
+    favoriteAnimal: 'goldfish',
+  });
+  
+  people.put({
+    name: 'Jimmy Vivaldi',
+    age: 37,
+    favoriteAnimal: 'Gecko',
+  });
+  
+  return tx.complete;
+}).then(function() {
+  console.log('People added...');
+});
+
+// db v2: READ: read all the people from the people store
+dbPromise.then(function(db) {
+  var tx = db.transaction('people');
+  var peopleStore = tx.objectStore('people');
+  return people.getAll();
+}).then(function(people) {
+  console.log('People:', people);
+});
+
 ```
+
+People will print in the console in alphabetical order... What if you wanted
+to print/read the people objects in age order or favorite animal?  This is where indexes come in.
+
+Indexes can only be added during an database upgrade, so let's start working on
+v3 and add another case statement to our switch flow...
+
+```js
+import idb from 'idb';
+
+// Create db version x
+var dbPromise = idb.open('test-db', 2, function(updgradeDB) {
+  switch(upgradeDb.oldVersion) {
+    case 0: 
+      var keyValStore = upgradeDb.createObjectStore('keyval');
+      keyValStore.put('world', 'hello');
+      // do not break here!
+    case 1:
+      upgradeDb.createObjectStore('people'), { keyPath: 'name' }); // objects keys are name values
+      // do not break here!
+    case 2: 
+      var peopleStore = upgradeDb.transaction.objectStore('people');
+      peopleStore.createIndex('animal', 'favoriteAnimal')
+});
+
+
+// db v3: READ: read all the people from the people store's animal index
+dbPromise.then(function(db) {
+  var tx = db.transaction('people');
+  var peopleStore = tx.objectStore('people');
+  var animalIndex = peopleStore.index('animal');
+  return animalIndex.getAll();
+}).then(function(people) {
+  console.log('People:', people);
+});
+```
+
+So, basically, an index is like an "ORDER BY" statement... But in order to issue this
+"ORDER BY" statement, you have to build it into the database beforehand.
+
+To pass a query on an index:
+```js
+// db v3: READ: read all the people from the people store's animal index
+dbPromise.then(function(db) {
+  var tx = db.transaction('people');
+  var peopleStore = tx.objectStore('people');
+  var animalIndex = peopleStore.index('animal');
+  return animalIndex.getAll('cat');  // FILTER ONLY CAT PEOPLE 
+}).then(function(people) {
+  console.log('People:', people);
+});
+```
+
+## Going through database queries one entry at a time w/ cursors
+Here we will show another trick w/ promises using an asynchronous loop!
+
+```js
+dbPromise.then(function(db) {
+  var tx = db.transaction('people');
+  var peopleStore = tx.objectStore('people');
+  var ageIndex = peopleStore.index('age');
+  return ageIndex.openCursor();  // OPEN CURSOR
+}).then(function logPerson(curosr) {
+  if (!cursor) return;
+  /...............
+});
