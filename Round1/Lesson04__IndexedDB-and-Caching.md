@@ -289,7 +289,21 @@ dbPromise.then(function(db) {
   var peopleStore = tx.objectStore('people');
   var ageIndex = peopleStore.index('age');
   return ageIndex.openCursor();  // OPEN CURSOR
-}).then(function logPerson(curosr) {
+}).then(function logPerson(cursor) {     // Notice the function name
   if (!cursor) return;
-  /...............
+  console.log('Cursor at:, cursor.value.name);
+  return cursor.continue().then(logPerson);  // RECURSION, BABY!
+}).then(function() {
+  console.log('Done cursoring.');
 });
+```
+
+Cursors are a good way to modify items as you're looping through...
+
+Some cursor methods...
+```js
+cursor.update(newValue);
+cursor.delete();
+cursor.advance(2); // skip 2 items
+```
+
