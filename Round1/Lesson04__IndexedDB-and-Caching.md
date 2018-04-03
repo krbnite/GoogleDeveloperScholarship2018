@@ -339,4 +339,50 @@ IndexController.prototype._onSocketMessage = function(data) {
   this._postsView.addPosts(messages);
 };
 ```
+-----------------------------------------------------------
 
+# Offline Images: How to Deal?!
+Use the Cache API!
+
+The images used in wittr are responsive images.  "What's that?" you ask?  Here
+is an example:
+
+```html
+<img src="/photos/6512-800px.jpg"
+  srcset="/photos/6512-1024px.jpg 1024w,
+          /photos/6512-800px.jpg 800w,
+          /photos/6512-640px.jpg 640w,
+          /photos/6512-320px.jpg 32w"
+  sizes="(min-width: 800px) 765px,
+         (min-width: 600px) calc(100vw - 32px),
+         calc(100vw - 16px)">
+```
+
+Method: cache requested images so that the service worker can simply return it, not
+send out another request.
+
+Trick: even if the browser requests a different sized image, return whatever image you
+have in the cache.  Too big? Probably doesn't matter.  Too small? Probably doesn't matter. Anything
+"right away" is better than waiting.  Posts on wittr are short-lived.  No need to waste bandwidth
+on responsive image requests...
+
+---------------------------
+
+You can only use the body of a response once... To use a response more than once, use 
+response.clone() until you're done with the response...
+
+Example:  if you read the response as JSON (`response.json()`), you cannot then read
+the response as a BLOB (`response.blob()`).  This is b/c the original data is gone (keeping it in
+memory would be wasteful).  This is a problem if you want to both cache an image and send
+that image back to the browser...  Thus, the need for `response.clone()`.
+
+```js
+event.respondWith(
+  caches.open('wittr-content-imgs').then(function(cache) {
+    return fetch(request).then(function(response) {
+      cache.put(request, response.clone());  // 1st use of response (w/ clone)
+      return response;  // 2nd use of response
+    });
+  })
+);
+```
