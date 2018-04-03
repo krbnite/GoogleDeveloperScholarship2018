@@ -192,7 +192,7 @@ dbPromise.then(function(db) {
 // db v2: WRITE: create a transaction for the person store
 dbPromise.then(function(db) {
   var tx = db.transaction('people', 'readwrite');
-  var people = tx.objectStore('people);
+  var people = tx.objectStore('people');
   
   people.put({
     name: 'Jake Archibald',
@@ -291,7 +291,7 @@ dbPromise.then(function(db) {
   return ageIndex.openCursor();  // OPEN CURSOR
 }).then(function logPerson(cursor) {     // Notice the function name
   if (!cursor) return;
-  console.log('Cursor at:, cursor.value.name);
+  console.log('Cursor at:', cursor.value.name);
   return cursor.continue().then(logPerson);  // RECURSION, BABY!
 }).then(function() {
   console.log('Done cursoring.');
@@ -305,5 +305,38 @@ Some cursor methods...
 cursor.update(newValue);
 cursor.delete();
 cursor.advance(2); // skip 2 items
+```
+
+## How to keep most recent 30 wittrs
+```js
+IndexController.prototype._onSocketMessage = function(data) {
+  var messages = JSON.parse(data);
+
+  this._dbPromise.then(function(db) {
+    if (!db) return;
+
+    var tx = db.transaction('wittrs', 'readwrite');
+    var store = tx.objectStore('wittrs');
+    messages.forEach(function(message) {
+      store.put(message);
+    });
+
+    // TODO: keep the newest 30 entries in 'wittrs',
+    // but delete the rest.
+    //
+    // Hint: you can use .openCursor(null, 'prev') to
+    // open a cursor that goes through an index/store
+    // backwards.
+    store.index('by-date').openCursor(null,'prev').then(function(cursor) {
+      return cursor.advance(30);
+    }).then(function deleteRest(cursor) {
+      if (!cursor) return;
+      cursor.delete();
+      return cursor.continue().then(deleteRest);
+    })
+  });
+
+  this._postsView.addPosts(messages);
+};
 ```
 
