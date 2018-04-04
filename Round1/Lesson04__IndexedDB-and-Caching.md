@@ -386,3 +386,63 @@ event.respondWith(
   })
 );
 ```
+
+-----------------
+
+### Regular Expressions in JavaScript
+Say we want to track a responsive photo, but don't want to write all the possible names: use
+a regular expression:
+```js
+function servePhoto(request) {
+  var storageUrl = request.url.replace(/-\d+px\.jpg$/, ''); // replace suffix w/ nothing
+}
+```
+
+
+### More on the Cache API
+```js
+cache.delete(request);
+cache.keys().then(function(requests) {
+  //...
+});
+```
+
+--------------------
+
+# Cache and IndexDB Promised APIs in Conjunction
+```js
+IndexController.prototype._cleanImageCache = function() {
+  return this._dbPromise.then(function(db) {
+    if (!db) return;
+
+    // TODO: open the 'wittr' object store, get all the messages,
+    // gather all the photo urls.
+    //
+    // Open the 'wittr-content-imgs' cache, and delete any entry
+    // that you no longer need.
+    var imagesNeeded = [];
+    var tx = db.transaction('wittrs');
+    var store = tx.objectStore('wittrs');
+    return store.getAll().then(function(messages) {
+      messages.forEach(function(message) {
+        if (message.photo) {
+          imagesNeeded.push(message.photo);
+        }
+      });
+      return caches.open('wittr-content-imgs');
+    }).then(function(cache) {
+      return cache.keys().then(function(requests) {
+        requests.forEach(function(request) {
+          var url = new URL(request.url);
+          if (!imagesNeeded.includes(url.pathname)) {
+            cache.delete(request);
+          }
+        });
+      });
+    });
+  });
+};
+```
+
+-----------------
+
