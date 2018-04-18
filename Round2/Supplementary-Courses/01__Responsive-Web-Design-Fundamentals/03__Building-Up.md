@@ -27,4 +27,4 @@ We'll define a stylesheet to be used only when the viewport is wider than 500 pi
 The `over500.css` file should have changes in the CSS, which take affect when the screen
 is made larger than 500 pixels...
 
-<img src="chrome-device-emulator.png">
+<img src="responsive.gif">
