@@ -27,4 +27,36 @@ We'll define a stylesheet to be used only when the viewport is wider than 500 pi
 The `over500.css` file should have changes in the CSS, which take affect when the screen
 is made larger than 500 pixels...
 
+
+### My Example
+This is cool as hell, and very simple.  Check out my GIF below; all it took was
+a simple HTML file and two .css files.
+
+index.html:
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" media="screen and (min-width: 500px)" href="over500.css">
+  </head>
+  <body>
+    Hello, world!
+  </body>
+</html>
+```
+
+styles.css:
+```css
+body {
+  background-color: red;
+}
+```
+
+over500.css:
+```css
+body {
+  background-color: blue;
+}
+```
+
 <img src="responsive.gif">
