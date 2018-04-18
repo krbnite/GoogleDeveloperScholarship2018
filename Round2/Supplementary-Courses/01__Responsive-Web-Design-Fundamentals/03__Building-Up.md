@@ -60,3 +60,44 @@ body {
 ```
 
 <img src="responsive.gif">
+
+## Another way to add a Media Query: @media
+The linked media query can result in many small HTTP requests.
+
+The @media query can result in some big HTTP requests.
+
+Media queries are almost always based on min-width or max-width.  Don't be stupid: don't
+use min-device-width or max-device-width, as these refer to physical device lengths and not browser pixels.
+
+## Media Query Quiz
+* http://udacity.github.io/RWDF-samples/quizzes/media-queries-quiz.html
+
+Basically, we had to add some breakpoints in a style tag in the head:
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+  <title>min-width and max-width Median Queries</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../default-styles.css">
+  
+  <style type="text/css">
+    h1 { ... }
+    @media screen and (max-width: 400px) {
+      body {background-color: red;}
+    }
+    @media screen and (min-width: 400px) {
+      body {background-color: green;}
+    }
+    @media screen and (min-width: 600px) {
+      body {background-color: blue;}
+    }
+  </style>
+  
+  </head>
+  <body>
+  ...
+  </body>
+</html>
+```
