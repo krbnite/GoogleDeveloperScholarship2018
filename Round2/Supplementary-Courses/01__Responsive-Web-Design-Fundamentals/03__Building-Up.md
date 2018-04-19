@@ -264,6 +264,12 @@ Also, we can change the ordering of the boxes w/ a media query:
 Another flexbox example:
 <img src="flexbox.png">
 
+It's import to understand that you can use flexbox to very easily translate an design into
+CSS code.
+
+<img src="flexbox2.png">
+
+
 ## Grid
 CSS Tricks: [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
