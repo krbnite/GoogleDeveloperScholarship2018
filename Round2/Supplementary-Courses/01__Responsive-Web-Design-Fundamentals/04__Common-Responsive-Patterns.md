@@ -266,3 +266,26 @@ My job is to throw in some breakpoints at 450px, 550px, and 800px.
   
 </style>
 ```
+
+
+<img src="responsive-design.gif">
+
+------------------------------------
+
+FFMPEG conversions:
+* use QuickTime to screen record
+* use FFMPEG to convert .mov to .gif while reducing frame rate, etc
+
+```bash
+ffmpeg -ss 00:00:00.000 -i responsive-project.mov -pix_fmt rgb24 -r 2  -t 8 output.gif
+```
+
+Supposedly this is supposed to help, but it didn't seem to do much in my experimentation and
+only bloated the file sizes....
+
+```bash
+convert -layers Optimize output4.gif output-optimized.gif
+```
+
+Some help:
+* https://superuser.com/questions/436056/how-can-i-get-ffmpeg-to-convert-a-mov-to-a-gif
