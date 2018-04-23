@@ -289,3 +289,113 @@ convert -layers Optimize output4.gif output-optimized.gif
 
 Some help:
 * https://superuser.com/questions/436056/how-can-i-get-ffmpeg-to-convert-a-mov-to-a-gif
+
+-------------------------------------------
+
+## Layout Shifter Pattern (Revisited)
+This is the pattern where the "div cell topology" really changes at different
+breakpoints.  It is helpful to use several div containers in this pattern so that 
+you can easily control groupings of div cells.  Also, the `order` CSS parameter is
+helpful here.
+
+```css
+.dark_blue { order: 4; }
+.light_blue { order: -1; }
+```
+
+This pattern takes more planning and control than some of the other
+patterns.
+
+Below, I replicated the example they show in the video.  It's just a simple HTML file
+with a single CSS file.  Nothing complex!
+
+HTML:
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mostly Fluid - Quiz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="box dark_blue"></div>
+      <div class="container" id="container2">
+        <div class="box light_blue"></div>
+        <div class="box green"></div>
+      </div>
+      <div class="box red"></div>
+    </div>
+  </body>
+</html>
+```
+
+CSS:
+```cs
+/* FONTS */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body { font-family: 'Roboto', sans-serif; }
+
+.title {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+/* 0 MARGINS */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* BOXES */
+.box { min-height: 150px; }
+.dark_blue { background-color: #2A457A; }
+.light_blue { background-color: #099DD9; }
+.green { background-color: #0C8542; }
+.red { background-color: #EC1D3B; }
+
+
+/* SMALLEST VIEWPORT */
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.box {
+  width: 100%;
+}
+
+/* BREAK POINT */
+@media screen and (min-width: 500px) {
+  .dark_blue { width: 50%; }
+  #container2 { width: 50%; }
+}
+
+/* BREAK POINT */
+@media screen and (min-width: 650px) {
+  .dark_blue {
+    width: 25%;
+    order: 1;
+  }
+  #container2 {
+    width: 50%;
+  }
+  .red{
+    width: 25%;
+    order: -1;
+  }
+}
+
+/* BREAK POINT */
+@media screen and (min-width: 800px) {
+  .container {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+```
+
