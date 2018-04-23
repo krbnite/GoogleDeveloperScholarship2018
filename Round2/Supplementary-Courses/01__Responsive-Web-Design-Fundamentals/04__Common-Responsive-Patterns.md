@@ -399,3 +399,29 @@ html, body {
 }
 ```
 
+<img src="layout-shifter.gif">
+
+## Off Canvas Pattern (Revisited)
+In my opinion, this is the pattern that really gets you from a "responsive website" into more of the
+"web app" territory.  Combined with what we learned in the offline-first methods (e.g., the use of 
+service workers and IndexDB), one has an offline/mobile-first, aesthetically pleasing responsive
+web app.  
+
+I noticed that this pattern also uses much more CSS machinery than the previous patterns, e.g.:
+```css
+nav {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  transform: translate(-300px, 0);
+  transition: transform 0.3s ease;
+}
+```
+
+Another thing I found interesting about this pattern (and even some of the more basic responsive CSS stuff)
+is that is inherently "asynchronous scripting."  That is, you can imagine using JavaScript async methods
+and event listeners to do the stuff we've learned in this course... But it'd certainly be more "cody/scripty" 
+looking.
+
+
+
