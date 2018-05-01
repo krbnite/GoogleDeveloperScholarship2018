@@ -34,6 +34,7 @@ class1 class2 { ... }
   - No fear: SASS3 is backwards compatible!
     * so if you learned and love the original SASS syntax, you can still use it
     * though if you haven't yet learned the original SASS syntax, almost seems pointless to
+* Note: if you see a .sass file, it's old Sass; if you see a .scss file, it's new Sass
 
 ### SASS Variable and Function Example
 ```scss
@@ -65,10 +66,14 @@ you could code in a nested style to represent a nested concept, would you want t
 
 Probably, and SASS offers that.
 
-Let's look at an example from CSS, then put it in SASS:
+Let's look at an example from CSS, then put it in SASS (from: https://sass-lang.com/guide):
 
 ```sass
+$main_color : #9E2932;
+
 nav {
+  background: $main_color;
+  
   ul {
     margin: 0;
     padding: 0;
@@ -85,3 +90,96 @@ nav {
 }
 ```
 
+In CSS:
+
+```css
+nav {
+  background: #9E2932;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+```
+
+### Partials & Import
+These are similar to the Server Side Includes I used on the Terrestrial Lab website.  With SSI, you have 
+HTML snippet files that you want to include in a full HTML file on the server side before it is served to
+the client; the practice is good for when you have a chunk of HTML that is repeated on a bunch of pages since
+it allows an "edit once, change all" approach.  The same is true for SASS partials: a SASS partial is a 
+SASS snippet file that you can then include into a main SASS/CSS file.
+
+From https://sass-lang.com/guide:
+> You can create partial Sass files that contain little snippets of CSS that you can include in other Sass files. This is a great way to modularize your CSS and help keep things easier to maintain. A partial is simply a Sass file named with a leading underscore. You might name it something like _partial.scss. The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the @import directive.
+
+```sass
+// assuming you made a _mypartial.scss file
+@import "mypartial";
+```
+
+Similar to SSI, the `@import` statement works serverside before the file is served to the client.  In vanilla
+CSS, there is an `import` statement as well, but which requires an HTTP request to be made.
+
+> CSS has an import option that lets you split your CSS into smaller, more maintainable portions. The only drawback is that each time you use @import in CSS it creates another HTTP request. Sass builds on top of the current CSS @import but instead of requiring an HTTP request, Sass will take the file that you want to import and combine it with the file you're importing into so you can serve a single CSS file to the web browser.
+
+### Extend: CSS classes as ... well, classes
+Often, you will find yourself rewriting CSS for different classes... Wouldn't it be nice
+to just write it once, then reference it when writing a more specific class?
+
+```sass
+.btn {
+  padding: 6px 12px;
+  line-height: 140%;
+  text-align: center;
+  vertical-align: center;
+  border: 1px solid transparent;
+  background: lighten($main_color, 20);
+}
+
+.arrow-button {
+  @extend .btn;
+  color: red;
+}
+```
+
+### Math Operators to the Rescue
+```sass
+$border : 1px;
+$thick_border: $border * 5;
+```
+
+### Conditionals to the Rescue
+```sass
+.sidebar {
+  @if ($border<=1) {
+    background-color: red;
+  } @else {
+    background-color: yellow;
+  }
+}
+```
+
+### Mixins to the Rescue (Functions)
+
+```scss
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.box { @include border-radius(10px); }
+```
