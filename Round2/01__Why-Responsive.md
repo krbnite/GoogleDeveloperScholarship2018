@@ -167,7 +167,7 @@ a bunch of the older SDKs.
 Actually, I went all the way down to Android 4.4 (KitKat) since I’m developing on an Android 5.0 (Lollipop) and figure a bunch of people might have an even older OS.  This solved the wearables issue I pointed out above (good!).
 
 ### Ok, ok -- emulate something already!!
-
+<img src="./images/android-studio-open-avd-manager.png" width=500>
 
 
 
