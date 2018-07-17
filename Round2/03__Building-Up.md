@@ -72,13 +72,48 @@ appears (opacity: 1).
 ```
 
 ## Overlapping Media Queries
-```
+```css
 @media screen and (max-width: 400px) { ... }
 @media screen and (min-width: 301px) and (max-width: 600px) { ... }
 @media screen and (min-width: 601px) { ... }
 @media screen and (min-width: 961px) { ... }
 ```
 
+## Grids
+In a fluid grid layout system, as the screen gets smaller, column elements wrap 
+into rows... One system where everything works well for you out of the box is the 
+Bootstrap system.
+
+* [Baisc Concepts of Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout)
+
+This method basically uses div elements to create fluid tables, instead of using
+the classical `<table>` elements. For example, to create the Grid Container:
+
+> "We create a grid container by declaring display: grid or display: inline-grid on an element. As soon as we do this all direct children of that element will become grid items.  In this example, I have a containing div with a class of wrapper, inside are five child elements."
+
+The HTML part of the grid:
+```html
+<div class="wrapper">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three</div>
+  <div>Four</div>
+  <div>Five</div>
+</div>
+```
+
+The corresponding CSS part of the grid:
+```css
+.wrapper {
+  display: grid;
+}
+```
 
 
+## Flexbox
+There is a standard Flexbox syntax, and a bunch of vendor-prefixed syntaxes... You basically
+just include vendor prefixes in a code snippet...
+
+Anyway... Flexbox definitely seems to be Udacity's preferred method here, as they dedicate 5 videos
+to it (compared to the 1 Grid video)
 
