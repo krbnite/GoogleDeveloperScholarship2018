@@ -109,6 +109,9 @@ The corresponding CSS part of the grid:
 }
 ```
 
+* http://cssgridgarden.com/
+    - video game learning
+
 
 ## Flexbox
 There is a standard Flexbox syntax, and a bunch of vendor-prefixed syntaxes... You basically
@@ -117,3 +120,14 @@ just include vendor prefixes in a code snippet...
 Anyway... Flexbox definitely seems to be Udacity's preferred method here, as they dedicate 5 videos
 to it (compared to the 1 Grid video)
 
+More on flexbox.........
+
+* https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+* https://www.w3schools.com/css/css3_flexbox.asp
+* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
+* https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox
+* https://flexbox.io/
+    - free email/video course 
+* https://flexboxfroggy.com/
+    - cool video game-based learning system
+    - reminds me of the Vim Adventures approach to learning
