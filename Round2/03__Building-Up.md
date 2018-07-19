@@ -120,7 +120,75 @@ just include vendor prefixes in a code snippet...
 Anyway... Flexbox definitely seems to be Udacity's preferred method here, as they dedicate 5 videos
 to it (compared to the 1 Grid video)
 
-More on flexbox.........
+Flexbox is powerful b/c it respects the room available: stretches and shinks nicely.
+
+In this example, we set the box width to 1px -- but not really!  B/c `display: flex` is 
+specified, the width parameter will be ignored and the boxes will fill whatever space is
+available in their container.
+
+
+### display: flex
+```html
+<html>
+    <head>
+    <!--stuff-->
+    <style type="text/css">
+        .container {
+            width: 100%;
+            display: flex;
+        }
+        .box { width: 1px; }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box dark_blue"></div>
+            <div class="box light_blue"></div>
+            <div class="box green"></div>
+        </div>
+    </body>
+</html>
+```
+
+### flex-wrap: wrap
+If you do want the boxes to maintain a certain width as the screen / space available
+changes size, you can specify the `flex-wrap: wrap` property.  In this case, flexbox will
+give wrapping some precedence, but will still resize when it needs to.
+
+```html
+<html>
+    <head>
+    <!--stuff-->
+    <style type="text/css">
+        .container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .box { width: 1px; }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box dark_blue"></div>
+            <div class="box light_blue"></div>
+            <div class="box green"></div>
+        </div>
+    </body>
+</html>
+```
+
+### order: n
+```css
+@media screen and (min-width: 700px) {
+    .dark_blue { order: -1; }
+    .green { order: 1; }
+```
+
+### Flexbox Design Example
+<img src="./images/flexbox-design.png">
+    
+            
 
 * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 * https://www.w3schools.com/css/css3_flexbox.asp
