@@ -216,3 +216,9 @@ a second container to help keep two of the color boxes together as things move a
 </html>
 ```
 
+# Off Canvas (Example)
+Layout Shift might take some planning CSS/design-wise, but Off Canvas still seems to be the most
+technical, requiring more flexbox, HTML, and JavaScript knowledge.  Of the 4 major design patterns,
+this is the only one where JavaScript even makes an entrance.
+
+...get back to this...
