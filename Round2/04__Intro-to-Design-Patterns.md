@@ -222,3 +222,7 @@ technical, requiring more flexbox, HTML, and JavaScript knowledge.  Of the 4 maj
 this is the only one where JavaScript even makes an entrance.
 
 ...get back to this...
+
+Here is the code (cmd+opt+i):
+* http://udacity.github.io/RWDF-samples/Lesson4/patterns/off-canvas.html
+
